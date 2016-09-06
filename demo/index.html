@@ -4,15 +4,14 @@
     <title>Demo</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="elements.css">
+    <link rel="stylesheet" href="http://d12m40tknrppbi.cloudfront.net/cite/css/style.css">
 </head>
 <body>
     <!-- Customize the demo for your component -->
-    <h1>Component Archetype Demo</h1>
-    <p>Styled using the Elements SDK.</p>
-    <br />
-    <div id="demo-target1"></div>
-    <br />
-    <div id="demo-target2"></div>
+    <div id="viewer-demo-title">
+        <h1>Viewer Demo</h1>
+    </div>
+    <div id="viewer-container"></div>
 
     <!-- External dependencies for React -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js"></script>
@@ -20,8 +19,8 @@
     <!-- CustomEvent polyfill is for IE, Intl.js polyfill is for Safari -->
     <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
     <!-- Locally hosted demo server -->
-    <script src="http://localhost:8081/webpack-dev-server.js"></script>
+    <script src="http://localhost:8000/webpack-dev-server.js"></script>
     <!-- Demo build of component -->
-    <script src="../build/dev.component-name.js"></script>
+    <script src="../build/dev.viewer.js"></script>
 </body>
 </html>

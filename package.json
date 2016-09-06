@@ -4,8 +4,8 @@
   "description": "",
   "main": "./main.js",
   "scripts": {
-    "dev-setup": "mkdir -p fonts && cp ./node_modules/pearson-elements/dist/fonts/* ./fonts && cp ./node_modules/pearson-elements/dist/css/elements.css ./demo",
-    "dev": "npm run dev-setup && webpack-dev-server --port 8081 --devtool source-map --hot --progress --colors",
+     "dev-setup": "IF not exist fonts mkdir -p fonts && copy .\\node_modules\\pearson-elements\\dist\\fonts\\* .\\fonts && copy .\\node_modules\\pearson-elements\\dist\\css\\elements.css .\\demo",
+    "dev": "npm run dev-setup && webpack-dev-server --port 8000 --devtool source-map --hot --progress --colors",
     "pretest": "npm run lint",
     "test": "mocha --compilers js:babel-register --require babel-polyfill --require intl --require test/utils/dom.js",
     "build": "webpack -p",
@@ -15,7 +15,7 @@
     "ci": "npm test && npm run build",
     "release": "node ./npm_scripts/release.js",
     "verify": "node ./npm_scripts/verify.js",
-    "postinstall": "cp ./node_modules/@pearson-components/npm-scripts/npm_scripts/*.js ./npm_scripts"
+    "postinstall": "copy .\\node_modules\\@pearson-components\\npm-scripts\\npm_scripts\\*.js .\\npm_scripts"
   },
   "author": "",
   "license": "MIT",
@@ -24,7 +24,8 @@
     "url": "https://github.com/Pearson-Higher-Ed/"
   },
   "dependencies": {
-    "react-intl": "~2.0.1"
+    "react-intl": "~2.0.1",
+    "contentful": "^3.5.0"
   },
   "devDependencies": {
     "@pearson-components/npm-scripts": "^0.1.0",

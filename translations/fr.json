@@ -1,4 +1,4 @@
 {
-  "buttonText": "dis bonjour",
-  "placeholder": "espace réservé"
+  "title": "Téléspectateur",
+  "emptyMessage": "Votre Téléspectateur est vide."
 }

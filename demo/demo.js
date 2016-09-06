@@ -1,23 +1,28 @@
-import MyComponent from '../main'; // to demo direct API usage
+import Viewer from '../main';
 
-// When available on npm, consumer usage would be similar to:
-// import MyComponent from '@pearson-components/[component-name]'
+function getParameterByName(name, url) {
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, '\\$&');
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+  const results = regex.exec(url);
+  if (!results) {
+    return null;
+  }
+  if (!results[2]) {
+    return '';
+  }
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
 function init() {
 
-  // Demo eventing API
-  document.body.dispatchEvent(new CustomEvent('o.InitMyComponent', {
-    detail: {
-      elementId: 'demo-target1',
-      greeting: 'Hello world!'
-    }
-  }));
+  const locale = getParameterByName('locale');
 
-  // Demo direct API
-  new MyComponent({
-    elementId: 'demo-target2',
-    greeting: 'Bonjour le monde!',
-    locale: 'fr'
+  new Viewer({
+    elementId: 'viewer-container',
+    locale:locale
   });
 
 }

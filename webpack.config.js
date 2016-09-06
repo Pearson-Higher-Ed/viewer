@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     path: './',
-    filename: 'build/[name].component-name.js',
+    filename: 'build/[name].viewer.js',
     libraryTarget: 'umd'
   },
   devtool: 'cheap-module-source-map',

@@ -1,17 +1,12 @@
 import {defineMessages} from 'react-intl';
 
-//
-// Default messages are 'en-US'
-//
 export const messages = defineMessages({
-  buttonText: {
-    id: 'buttonText',
-    description : 'this is demo button text',
-    defaultMessage: 'say hello'
+  title: {
+    id: 'title',
+    defaultMessage: 'Viewer'
   },
-  placeholder: {
-    id: 'placeholder',
-    description : 'this is a demo placeholder',
-    defaultMessage: 'placeholder'
+  emptyMessage: {
+    id: 'emptyMessage',
+    defaultMessage: 'Your viewer is empty'
   }
 });
