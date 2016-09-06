@@ -4,7 +4,7 @@
   "description": "",
   "main": "./main.js",
   "scripts": {
-     "dev-setup": "IF not exist fonts mkdir -p fonts && copy .\\node_modules\\pearson-elements\\dist\\fonts\\* .\\fonts && copy .\\node_modules\\pearson-elements\\dist\\css\\elements.css .\\demo",
+     "dev-setup": "mkdir -p fonts && cp ./node_modules/pearson-elements/dist/fonts/* ./fonts && cp ./node_modules/pearson-elements/dist/css/elements.css ./demo",
     "dev": "npm run dev-setup && webpack-dev-server --port 8000 --devtool source-map --hot --progress --colors",
     "pretest": "npm run lint",
     "test": "mocha --compilers js:babel-register --require babel-polyfill --require intl --require test/utils/dom.js",
@@ -15,7 +15,7 @@
     "ci": "npm test && npm run build",
     "release": "node ./npm_scripts/release.js",
     "verify": "node ./npm_scripts/verify.js",
-    "postinstall": "copy .\\node_modules\\@pearson-components\\npm-scripts\\npm_scripts\\*.js .\\npm_scripts"
+    "postinstall": "cp ./node_modules/@pearson-components/npm-scripts/npm_scripts/*.js ./npm_scripts"
   },
   "author": "",
   "license": "MIT",
