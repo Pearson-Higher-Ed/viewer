@@ -1,3 +1,63 @@
 ////
 /// Custom SCSS for component-specific styling goes here
 ////
+
+#cite-book #viewer-container #viewer {
+	line-height:normal;
+}
+.navigation {
+	height:65px;
+	border-top:1px solid #c7c7c7;
+	padding:1% 1.7%;
+	line-height:normal;
+}
+.navigation .section{
+	object-fit: contain;
+  	font-family: OpenSans;
+  	font-size: 16px;
+  	font-style: normal;
+  	font-stretch: normal;
+}
+.navigation .currentSection {
+	float:left;
+	width:35%;
+	text-align:center;
+	margin-top:12px;
+}
+.navigation .nextSection {
+	float:right;
+	background:url(./img/ic-next-blue@2x.png) no-repeat right;
+	background-size: 18px 9px;
+	color: #007fa3;
+	width:32%;
+	padding-left:4%;
+	cursor:pointer;
+}
+.navigation .prevSection {
+	float:left;
+	background:url(./img/ic-previous-grey@2x.png) no-repeat left;
+	background-size: 18px 9px;
+	color: #3e3e3e;
+	width:32%;
+	padding-left:3%;
+	cursor:pointer;
+}
+
+.navigation .content{
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 95%;
+}
+.navigation .nextSection .content{
+	width: 90%;
+}
+.navigation .line{
+  width: 2px;
+  height: 30px;
+  border: solid 1px #c7c7c7;
+  float:left;
+  margin-top: 6px;
+}
+

@@ -10,7 +10,51 @@ class ComponentOwner extends React.Component {
     this.state = {
       content: ''
     };
+    /*this.createAnn = this.createAnn.bind(this);
+    this.deleteAnn = this.deleteAnn.bind(this);
+    this.updateAnn = this.updateAnn.bind(this);*/
   }
+
+  getSelectedText() {
+    let text = '';
+    if (typeof window.getSelection !== 'undefined') {
+      text = window.getSelection().toString();
+    } else if (typeof document.selection !== 'undefined' && document.selection.type === 'Text') {
+      text = document.selection.createRange().text;
+    }
+    return text;
+  }
+
+  /*createAnn() {
+    const selectedText = this.getSelectedText();
+
+    if (selectedText) {
+      const ann = {
+        author: 'Arish',
+        color: 'blue',
+        time: '12345678',
+        text: selectedText,
+        comment: 'this is sample comment'
+      };
+      this.props.store.dispatch(this.props.actions.createAnnotation(ann));
+    }
+  }
+
+  deleteAnn() {
+    const id=0;
+    this.props.store.dispatch(this.props.actions.deleteAnnotation(id));
+  }
+
+  updateAnn() {
+    const ann = {
+      id:0,
+      author: 'ArishUpdated',
+      color: 'Green',
+      time: '12345678',
+      comment: 'this is updated comment'
+    };
+    this.props.store.dispatch(this.props.actions.updateAnnotation(ann));
+  }*/
 
   renderEmpty() {
     const {formatMessage} = this.props.intl;
@@ -24,9 +68,10 @@ class ComponentOwner extends React.Component {
     )
   }
 
+
   renderContent() {
     return (
-      <Content contentProp = {this.state.content}/>
+      <Content contentProp = {this.state.content} />
     );
   }
 
@@ -46,6 +91,7 @@ class ComponentOwner extends React.Component {
         content: response.fields.content
       });
     });
+
   }
 
   componentWillUnmount() {
@@ -53,11 +99,13 @@ class ComponentOwner extends React.Component {
   }
 
   render() {
+
     return (
       <div id="viewer" role="main">
-          <div className="viewer-body">
-              {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
-          </div>
+        <div className="viewer-body">
+            {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
+        </div>
+        <Navigation />
       </div>
     )
   }
@@ -67,6 +115,46 @@ class Content extends React.Component {
   render() {
     return (
       <div className="player-content" dangerouslySetInnerHTML={{__html: this.props.contentProp}}></div>
+    );
+  }
+}
+
+class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: ''
+    };
+  }
+
+  sectionClk = (section) => {
+    alert(section+' is clicked');
+  }
+
+  render() {
+    const prevContent = 'Section 1: The Introduction';
+    const prevText = 'Previous';
+    const nextContent = 'Section 3: The Biological';
+    const nextText = 'Next';
+    const curPageNo = 'Page 10';
+    return (
+      <div className="navigation">
+        <div className="prevSection section" title={prevContent} onClick={() => this.sectionClk('Previous')}>
+          <div className="prevContent">
+            <div className="label">{prevText}</div>
+            <div className="content">{prevContent}</div>
+          </div>
+        </div>
+        <div className="line"></div>
+        <div className="currentSection section">{curPageNo}</div>
+        <div className="line"></div>
+        <div className="nextSection section" title={nextContent} onClick={() => this.sectionClk('Next')}>
+          <div className="nextContent">
+            <div className="label">{nextText}</div>
+            <div className="content">{nextContent}</div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
