@@ -10,55 +10,10 @@ class ComponentOwner extends React.Component {
     this.state = {
       content: ''
     };
-    /*this.createAnn = this.createAnn.bind(this);
-    this.deleteAnn = this.deleteAnn.bind(this);
-    this.updateAnn = this.updateAnn.bind(this);*/
   }
-
-  getSelectedText() {
-    let text = '';
-    if (typeof window.getSelection !== 'undefined') {
-      text = window.getSelection().toString();
-    } else if (typeof document.selection !== 'undefined' && document.selection.type === 'Text') {
-      text = document.selection.createRange().text;
-    }
-    return text;
-  }
-
-  /*createAnn() {
-    const selectedText = this.getSelectedText();
-
-    if (selectedText) {
-      const ann = {
-        author: 'Arish',
-        color: 'blue',
-        time: '12345678',
-        text: selectedText,
-        comment: 'this is sample comment'
-      };
-      this.props.store.dispatch(this.props.actions.createAnnotation(ann));
-    }
-  }
-
-  deleteAnn() {
-    const id=0;
-    this.props.store.dispatch(this.props.actions.deleteAnnotation(id));
-  }
-
-  updateAnn() {
-    const ann = {
-      id:0,
-      author: 'ArishUpdated',
-      color: 'Green',
-      time: '12345678',
-      comment: 'this is updated comment'
-    };
-    this.props.store.dispatch(this.props.actions.updateAnnotation(ann));
-  }*/
 
   renderEmpty() {
     const {formatMessage} = this.props.intl;
-
     return (
       <div className="empty-help" >
           <div className="empty-message" tabindex="0">
@@ -67,7 +22,6 @@ class ComponentOwner extends React.Component {
       </div>
     )
   }
-
 
   renderContent() {
     return (
@@ -123,7 +77,7 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: ''
+      classname: 'navigation'
     };
   }
 
@@ -131,14 +85,56 @@ class Navigation extends React.Component {
     alert(section+' is clicked');
   }
 
+  componentDidMount() {
+    const that = this;
+    let didScroll = false;
+    let lastScrollPosition = 0;
+
+
+    window.addEventListener('scroll', function() {
+      didScroll = true;
+    });
+
+    setInterval(function() {
+      if (didScroll) {
+        const documentHeight = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.clientHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        );
+        const currentScrollPosition = window.pageYOffset;
+        const pageEndReached = currentScrollPosition + window.innerHeight === documentHeight;
+        // Scrolling down
+        if (currentScrollPosition > lastScrollPosition && !pageEndReached) {
+          that.setState({
+            classname: 'navigation nav-down'
+          });
+        }
+        // Scrolling Up
+        else {
+          that.setState({
+            classname: 'navigation'
+          });
+        }
+        lastScrollPosition = currentScrollPosition;
+        didScroll = false;
+      }
+    }, 100);
+  }
+
+
+
   render() {
     const prevContent = 'Section 1: The Introduction';
     const prevText = 'Previous';
     const nextContent = 'Section 3: The Biological';
     const nextText = 'Next';
     const curPageNo = 'Page 10';
+
     return (
-      <div className="navigation">
+      <div className={this.state.classname}>
         <div className="prevSection section" title={prevContent} onClick={() => this.sectionClk('Previous')}>
           <div className="prevContent">
             <div className="label">{prevText}</div>
@@ -158,6 +154,7 @@ class Navigation extends React.Component {
     );
   }
 }
+
 
 ComponentOwner.propTypes = {
   intl: intlShape.isRequired,

@@ -10,6 +10,15 @@
 	border-top:1px solid #c7c7c7;
 	padding:1% 1.7%;
 	line-height:normal;
+	position:fixed;
+	bottom:0;
+	background-color:#FFF;
+	width:100%;
+	-webkit-transition: all .25s;
+    transition: all .25s;
+}
+.navigation.nav-down{
+	bottom:-65px;
 }
 .navigation .section{
 	object-fit: contain;
