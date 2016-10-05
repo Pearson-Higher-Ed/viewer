@@ -32,7 +32,7 @@ export default class Viewer {
 
     ReactDOM.render(
       <IntlProvider locale={locale} messages={translations[locale]}>
-        <ComponentOwner store={config.store} actions={config.actions}/>
+        <ComponentOwner data={config}/>
       </IntlProvider>,
       document.getElementById(config.elementId)
     );

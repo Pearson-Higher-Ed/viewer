@@ -1,7 +1,10 @@
+/*jshint esversion: 6 */
 import React, {PropTypes} from 'react';
 import {intlShape, injectIntl} from 'react-intl';
 import {messages} from './defaultMessages';
 import contentful from 'contentful';
+import find from 'lodash/find';
+import head from 'lodash/head';
 
 class ComponentOwner extends React.Component {
 
@@ -33,7 +36,11 @@ class ComponentOwner extends React.Component {
     const that = this;
     const space = 'tbx6i45kvpo5';
     const accessToken = 'ddaa1c7c0ebfd27bfacbe8aa5422becf25a444a3bc415cdb0011e06e22f9189a';
-    const entry = 'lhkEkHHAPuYi0GQUUMwyU';
+    const bookId = window.bookId;
+    const tocId = find(that.props.data.store.getState().bookshelf, function (bookshelf) {return bookshelf.id===bookId;}).tocId;
+    const toc = find(that.props.data.store.getState().toc, function (toc) {return toc.id===tocId;}).list;
+    const firstPage = head(toc);
+    const entry = firstPage.id;
 
     const client = contentful.createClient({
       space: space,
