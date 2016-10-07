@@ -15,12 +15,15 @@
 	background-color:#FFF;
 	width:100%;
 	-webkit-transition: all .25s;
-    transition: all .25s;
+  transition: all .25s;
+  .hide {
+    visibility: hidden;
+  }
 }
 .navigation.nav-down{
 	bottom:-65px;
 }
-.navigation .section{
+.navigation .section {
 	object-fit: contain;
   	font-family: OpenSans;
   	font-size: 16px;
@@ -29,13 +32,14 @@
   	color:#3e3e3e;
 }
 .navigation .currentSection {
-	float:left;
+	display: inline-block;
 	width:35%;
 	text-align:center;
-	margin-top:12px;
+	margin-top: 12px;
+	vertical-align: top;
 }
 .navigation .nextSection {
-	float:right;
+	display: inline-block;
 	background:url(./img/ic-next-blue@2x.png) no-repeat right;
 	background-size: 18px 9px;
 	color: #007fa3;
@@ -44,7 +48,7 @@
 	cursor:pointer;
 }
 .navigation .prevSection {
-	float:left;
+	display: inline-block;
 	background:url(./img/ic-previous-grey@2x.png) no-repeat left;
 	background-size: 18px 9px;
 	color: #3e3e3e;
@@ -53,21 +57,21 @@
 	cursor:pointer;
 }
 
-.navigation .content{
+.navigation .content {
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 95%;
 }
-.navigation .nextSection .content{
+.navigation .nextSection .content {
 	width: 90%;
 }
-.navigation .line{
+.navigation .line {
   width: 2px;
   height: 30px;
   border: solid 1px #c7c7c7;
-  float:left;
+  display: inline-block;
   margin-top: 6px;
+  vertical-align: top;
 }
-
