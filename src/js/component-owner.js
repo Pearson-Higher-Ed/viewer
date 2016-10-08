@@ -40,8 +40,8 @@ class ComponentOwner extends React.Component {
   navigationChanged(targetPageId) {
     const that = this;
     const pages = that.props.data.pages;
-    const targetPage = find(that.props.data.pages, function(page) { return page.id === targetPageId; });
-    const targetPageIndex = findIndex(pages, function(page) { return page.id === targetPageId});
+    const targetPage = find(pages, function(page) { return page.id === targetPageId; });
+    const targetPageIndex = findIndex(pages, function(page) { return page.id === targetPageId; });
 
     // Update application state
     that.props.store.dispatch(that.props.actions.goToPage(targetPageId));        
