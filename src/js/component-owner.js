@@ -3,17 +3,18 @@ import {intlShape, injectIntl} from 'react-intl';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 
+
 class ComponentOwner extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       currentPageNo: 1,
       totalPages: this.props.data.pages.length,
-      content: this.props.data.pages[0].content,    
+      content: this.props.data.pages[0].content,
       currentPageId: this.props.data.pages[0].id,
-      currentPageTitle: this.props.data.pages[0].title,  
+      currentPageTitle: this.props.data.pages[0].title,
       prevPageTitle: '',
       nextPageTitle: (this.props.data.pages.length >= 0) ? this.props.data.pages[1].title : '',
       isFirstPage: true,
@@ -37,6 +38,17 @@ class ComponentOwner extends React.Component {
     );
   }
 
+  componentDidMount() {
+    this.pubsub_token = window.pubsub.subscribe('GO_TO_PAGE', function(topic, pageId) {
+      this.navigationChanged(pageId);
+    }.bind(this));
+
+  }
+
+  componentWillUnmount() {
+    window.pubsub.unsubscribe(this.pubsub_token);
+  }
+
   navigationChanged(targetPageId) {
     const that = this;
     const pages = that.props.data.pages;
@@ -44,14 +56,14 @@ class ComponentOwner extends React.Component {
     const targetPageIndex = findIndex(pages, function(page) { return page.id === targetPageId; });
 
     // Update application state
-    that.props.store.dispatch(that.props.actions.goToPage(targetPageId));        
+    that.props.store.dispatch(that.props.actions.goToPage(targetPageId));
 
     // Update component state
     that.setState({
       currentPageNo: targetPageIndex + 1,
-      content: targetPage.content,    
+      content: targetPage.content,
       currentPageId: targetPage.id,
-      currentPageTitle: targetPage.title,  
+      currentPageTitle: targetPage.title,
       prevPageTitle: targetPageIndex <= 0 ? '' : pages[targetPageIndex - 1].title,
       nextPageTitle: targetPageIndex >= pages.length-1 ? '' : pages[targetPageIndex + 1].title,
       isFirstPage: targetPageIndex <= 0,
@@ -127,9 +139,9 @@ class Navigation extends React.Component {
       }
     }, 100);
   }
-  
+
   render() {
-    const prevText = 'Previous';  
+    const prevText = 'Previous';
     const nextText = 'Next';
 
     return (
@@ -140,11 +152,11 @@ class Navigation extends React.Component {
             <div className="content">{this.props.data.prevPageTitle}</div>
           </div>
         </div>
-        
-        <div className={`line ${this.props.data.isFirstPage ? 'hide' : ''}`}></div>        
-        <div tabIndex="0" className="currentSection section">Page {this.props.data.currentPageNo}</div>        
+
+        <div className={`line ${this.props.data.isFirstPage ? 'hide' : ''}`}></div>
+        <div tabIndex="0" className="currentSection section">Page {this.props.data.currentPageNo}</div>
         <div className={`line ${this.props.data.isLastPage ? 'hide' : ''}`}></div>
-        
+
         <div tabIndex="0" className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)}>
           <div className="nextContent">
             <div className="label">{nextText}</div>
