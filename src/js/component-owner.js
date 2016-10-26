@@ -69,6 +69,11 @@ class ComponentOwner extends React.Component {
       isFirstPage: targetPageIndex <= 0,
       isLastPage: targetPageIndex >= pages.length-1
     });
+
+    //check for bookmarked page or not
+    const targetBookMark = find(that.props.store.getState().bookmarks, function(bookmarks) { return bookmarks.uri === targetPage.id; });
+    const isBookmarked = targetBookMark === undefined ? false : true;
+    window.pubsub.publish('IS_BOOKMARKED', isBookmarked);
   }
 
   render() {
