@@ -1,7 +1,7 @@
 {
-  "name": "",
-  "version": "0.0.0",
-  "description": "",
+  "name": "@pearson-incubator/viewer",
+  "version": "0.1.0",
+  "description": "Viewer component to render pages of a book",
   "main": "./main.js",
   "scripts": {
     "dev-setup": "mkdir -p fonts && cp ./node_modules/pearson-elements/dist/fonts/* ./fonts && cp ./node_modules/pearson-elements/dist/css/elements.css ./demo",
@@ -17,7 +17,7 @@
     "verify": "node ./npm_scripts/verify.js",
     "postinstall": "cp ./node_modules/@pearson-components/npm-scripts/npm_scripts/*.js ./npm_scripts"
   },
-  "author": "",
+  "author": "Arish Krishnan",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,11 +1,9 @@
-import React, {PropTypes} from 'react';
-import {intlShape, injectIntl} from 'react-intl';
+import React, { PropTypes } from 'react';
+import { intlShape, injectIntl } from 'react-intl';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 
-
-class ComponentOwner extends React.Component {
-
+class Viewer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -173,9 +171,9 @@ class Navigation extends React.Component {
   }
 }
 
-ComponentOwner.propTypes = {
+Viewer.propTypes = {
   intl: intlShape.isRequired,
   locale: PropTypes.string
 };
 
-export default injectIntl(ComponentOwner); // Inject this.props.intl into the component context
+export default injectIntl(Viewer);

@@ -1,17 +1,14 @@
-import './main.scss';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ComponentOwner from './src/js/component-owner';
-
-// i18n
-import {addLocaleData, IntlProvider} from 'react-intl';
+import { addLocaleData, IntlProvider } from 'react-intl';
 import frLocaleData from 'react-intl/locale-data/fr';
 import itLocaleData from 'react-intl/locale-data/it';
 import nlLocaleData from 'react-intl/locale-data/nl';
 import frJson from './translations/fr.json';
 import itJson from './translations/it.json';
 import nlJson from './translations/nl.json';
+import Viewer from './src/js/Viewer';
+import './main.scss';
 
 const translations = {
   'fr' : frJson,
@@ -19,7 +16,7 @@ const translations = {
   'nl' : nlJson
 };
 
-export default class Viewer {
+export default class ViewerComponent {
   constructor(config) {
     addLocaleData(frLocaleData);
     addLocaleData(itLocaleData);
@@ -32,12 +29,14 @@ export default class Viewer {
 
     ReactDOM.render(
       <IntlProvider locale={locale} messages={translations[locale]}>
-        <ComponentOwner data={config.data} store={config.store} actions={config.viewerActions} />
+        <Viewer data={config.data} store={config.store} actions={config.viewerActions} />
       </IntlProvider>,
       document.getElementById(config.elementId)
     );
   }
 }
 
+export Viewer from './src/js/Viewer';
+
 // Listen for client events to initialize a new Viewer component
-document.body.addEventListener('o.InitViewer', e => new Viewer(e.detail));
+document.body.addEventListener('o.InitViewer', e => new ViewerComponent(e.detail));

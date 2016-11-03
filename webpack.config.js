@@ -56,7 +56,7 @@ module.exports = {
         loader: 'style!css!sass' // sass -> css -> javascript -> inline style
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel',
         query: {
           cacheDirectory: true,
@@ -72,5 +72,8 @@ module.exports = {
         loader: 'url-loader?limit=10000'
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
   }
 };
