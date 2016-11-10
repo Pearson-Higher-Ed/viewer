@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
 import { intlShape, injectIntl } from 'react-intl';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 
-class Viewer extends React.Component {
+export default class Viewer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -171,9 +171,8 @@ class Navigation extends React.Component {
   }
 }
 
-Viewer.propTypes = {
+/*Viewer.propTypes = {
   intl: intlShape.isRequired,
   locale: PropTypes.string
-};
+};*/
 
-export default injectIntl(Viewer);

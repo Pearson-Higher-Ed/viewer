@@ -7,8 +7,8 @@ import nlLocaleData from 'react-intl/locale-data/nl';
 import frJson from './translations/fr.json';
 import itJson from './translations/it.json';
 import nlJson from './translations/nl.json';
-import Viewer from './src/js/Viewer';
 import './main.scss';
+import ComponentOwner from './src/js/component-owner';
 
 const translations = {
   'fr' : frJson,
@@ -29,7 +29,7 @@ export default class ViewerComponent {
 
     ReactDOM.render(
       <IntlProvider locale={locale} messages={translations[locale]}>
-        <Viewer data={config.data} store={config.store} actions={config.viewerActions} />
+        <ComponentOwner data={config.data} />
       </IntlProvider>,
       document.getElementById(config.elementId)
     );
