@@ -19,59 +19,93 @@
   .hide {
     visibility: hidden;
   }
-}
-.navigation.nav-down{
-	bottom:-65px;
-}
-.navigation .section {
+  .section {
 	object-fit: contain;
   	font-family: OpenSans;
   	font-size: 16px;
   	font-style: normal;
   	font-stretch: normal;
   	color:#3e3e3e;
-}
-.navigation .currentSection {
+  }
+  .currentSection {
 	display: inline-block;
 	width:35%;
 	text-align:center;
 	margin-top: 12px;
 	vertical-align: top;
-}
-.navigation .nextSection {
+  }
+  .nextSection {
 	display: inline-block;
-	background:url(./img/ic-next-blue@2x.png) no-repeat right;
-	background-size: 18px 9px;
 	color: #007fa3;
 	width:32%;
 	padding-left:4%;
+	float:right;
 	cursor:pointer;
-}
-.navigation .prevSection {
+	.nextContent {
+	  width:100%;
+	  float:left;
+	  .wrapper {
+	    width:88%;
+	    float:left;
+	    .content {
+		  width: 100%;
+	    }
+	    .label {
+	  	  color:#007fa3;
+	  	  font-size:16px;
+	  	  text-align:left;
+	    }
+	  }
+	}
+	
+	
+  }
+  .prevSection {
 	display: inline-block;
-	background:url(./img/ic-previous-grey@2x.png) no-repeat left;
-	background-size: 18px 9px;
 	color: #3e3e3e;
 	width:32%;
-	padding-left:3%;
 	cursor:pointer;
+	.prevContent{
+	  width:100%;
+	  float:left;
+	  .wrapper {
+	    width:88%;
+	    float:left;
+	    margin:0 0 0 5.5%;
+	    .label{
+  	      color:#3e3e3e;
+  	      font-size:16px;
+  	      text-align:left;
+  	    }
+	  }
+	  
+	}
+	
+  }
+  .content {
+  	font-weight: bold;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+  	width: 95%;
+  }
+  .line {
+	width: 2px;
+	height: 30px;
+	border: solid 1px #c7c7c7;
+	display: inline-block;
+	margin-top: 6px;
+	vertical-align: top;
+  }
+
+}
+.navigation.nav-down{
+	bottom:-65px;
 }
 
-.navigation .content {
-  font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 95%;
+
+.navigation .label {
+	
 }
-.navigation .nextSection .content {
-	width: 90%;
-}
-.navigation .line {
-  width: 2px;
-  height: 30px;
-  border: solid 1px #c7c7c7;
-  display: inline-block;
-  margin-top: 6px;
-  vertical-align: top;
-}
+
+
