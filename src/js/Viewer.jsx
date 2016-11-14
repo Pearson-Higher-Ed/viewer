@@ -175,7 +175,7 @@ class Navigation extends React.Component {
 
     return (
       <div className={this.state.classname}>
-        <div tabIndex="0" className={`prevSection section ${this.props.data.isFirstPage ? 'hide' : ''}`} title={this.props.data.prevPageTitle} onClick={() => this.sectionClk(false)}>
+        <div tabIndex="0" className={`prevSection section ${this.props.data.isFirstPage ? 'hide' : ''}`} title={this.props.data.prevPageTitle} onClick={() => this.sectionClk(false)} onKeyPress={() => this.sectionClk(false)}>
           <div className="prevContent">
             <PrevBtn viewBox="24 28 18 9" style={style.prevBtn}/>
             <div className="wrapper">
@@ -189,7 +189,7 @@ class Navigation extends React.Component {
         <div tabIndex="0" className="currentSection section">Page {this.props.data.currentPageNo}</div>
         <div className={`line ${this.props.data.isLastPage ? 'hide' : ''}`}></div>
 
-        <div tabIndex="0" className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)}>
+        <div tabIndex="0" className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)} onKeyPress={() => this.sectionClk(true)}>
           <div className="nextContent">
             <div className="wrapper">
               <div className="label">{nextText}</div>
