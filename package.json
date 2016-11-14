@@ -1,6 +1,6 @@
 {
   "name": "@pearson-incubator/viewer",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Viewer component to render pages of a book",
   "main": "./main.js",
   "scripts": {
