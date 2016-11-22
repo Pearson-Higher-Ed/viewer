@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Viewer from '../main';
 
 function getParameterByName(name, url) {
@@ -25,12 +26,13 @@ function init() {
     data: {
       currentPageId: 'abc123',
       pages: [
-        { id:'abc123', title: 'Title of Page 1', 'content': '<html>Hello World! This is Page 1.</html>' },
-        { id:'abc124', title: 'Title of Page 2', 'content': '<html>Hello World! This is Page 2.</html>' },
-        { id:'abc125', title: 'Title of Page 3', 'content': '<html>Hello World! This is Page 3.</html>' }
+        { id: 'abc123', title: 'Title of Page 1', 'content': '<html>Hello World! This is Page 1.</html>' },
+        { id: 'abc124', title: 'Title of Page 2', 'content': '<html>Hello World! This is Page 2.</html>' },
+        { id: 'abc125', title: 'Title of Page 3', 'content': '<html>Hello World! This is Page 3.</html>' }
       ]
     }
   });
 }
 
 window.onload = init;
+/* eslint-enable */

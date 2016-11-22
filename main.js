@@ -11,11 +11,11 @@ import './main.scss';
 import ComponentOwner from './src/js/component-owner';
 
 const translations = {
-  'fr' : frJson,
-  'it' : itJson,
-  'nl' : nlJson
+  fr: frJson,
+  it: itJson,
+  nl: nlJson
 };
-
+/* eslint-disable */
 export default class ViewerComponent {
   constructor(config) {
     addLocaleData(frLocaleData);
@@ -27,15 +27,15 @@ export default class ViewerComponent {
   init(config) {
     const locale = config.locale ? config.locale : 'en';
 
-    ReactDOM.render(
+    ReactDOM.render( 
       <IntlProvider locale={locale} messages={translations[locale]}>
-        <ComponentOwner data={config.data} />
-      </IntlProvider>,
+        <ComponentOwner data={config.data} /> 
+      </IntlProvider> ,
       document.getElementById(config.elementId)
     );
   }
 }
-
+/* eslint-enable */
 export Viewer from './src/js/Viewer';
 
 // Listen for client events to initialize a new Viewer component
