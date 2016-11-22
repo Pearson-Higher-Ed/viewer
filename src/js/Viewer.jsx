@@ -20,7 +20,10 @@ export default class Viewer extends React.Component {
       isLastPage: false
     };
     this.navigationChanged = this.navigationChanged.bind(this);
+    //this.navigate = this.navigate.bind(this);
   }
+
+  
 
   renderEmpty() {
     return (
@@ -41,7 +44,6 @@ export default class Viewer extends React.Component {
     this.pubsub_token = window.pubsub.subscribe('GO_TO_PAGE', function(topic, pageId) {
       this.navigationChanged(pageId);
     }.bind(this));
-
   }*/
 
   /*componentWillUnmount() {
@@ -75,9 +77,26 @@ export default class Viewer extends React.Component {
     window.pubsub.publish('IS_BOOKMARKED', isBookmarked);*/
   }
 
+  arrowNavigation = (e) => {
+    if(e.keyCode===37 || e.keyCode===39) {
+      const currentIndex = this.state.currentPageNo-1;
+      let reqId = null;
+      if(e.keyCode===37) {
+        reqId = this.state.isFirstPage ? null : this.props.data.pages[currentIndex-1].id;
+      } else {
+        reqId = this.state.isLastPage ? null : this.props.data.pages[currentIndex+1].id;
+      }
+      if(reqId===null) {
+        return;
+      } else {
+        this.navigationChanged(reqId);
+      }
+    }
+  }
+
   render() {
     return (
-      <div id="viewer" role="main">
+      <div id="viewer" role="main" tabIndex = "0" onKeyUp = {this.arrowNavigation} >
         <div className="viewer-body">
             {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
         </div>
@@ -106,6 +125,7 @@ class Navigation extends React.Component {
     this.props.callbackParent(goToPageId);
   }
 
+  
   componentDidMount() {
     const that = this;
     let didScroll = false;
@@ -142,6 +162,7 @@ class Navigation extends React.Component {
         didScroll = false;
       }
     }, 100);
+
   }
 
   render() {
@@ -189,7 +210,7 @@ class Navigation extends React.Component {
         <div tabIndex="0" className="currentSection section">Page {this.props.data.currentPageNo}</div>
         <div className={`line ${this.props.data.isLastPage ? 'hide' : ''}`}></div>
 
-        <div tabIndex="0" className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)} onKeyPress={() => this.sectionClk(true)}>
+        <div tabIndex="0" className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)} onKeyPress={() => this.sectionClk(true)} >
           <div className="nextContent">
             <div className="wrapper">
               <div className="label">{nextText}</div>
