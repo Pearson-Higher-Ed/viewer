@@ -56,6 +56,8 @@ class Navigation extends React.Component {
       goToPageId = this.props.pages[currentIndex + 1].id;
     }
     this.props.callbackParent(goToPageId);
+    window.scroll(0, 0);
+
   }
 
   render() {
