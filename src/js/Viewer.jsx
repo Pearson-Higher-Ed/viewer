@@ -1,11 +1,16 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import Navigation from './Navigation';
+import WidgetFactory from './widget-integration/widgetFactory';
+import AudioWidget from '../../../../../src/components/widgets/audioWidget';
+
 
 class Viewer extends React.Component {
   constructor(props) {
     super(props);
+    this.nodesToUnMount = [];
 
     this.state = {
       currentPageNo: 1,
@@ -21,6 +26,30 @@ class Viewer extends React.Component {
     this.navigationChanged = this.navigationChanged.bind(this);
   }
 
+  loadComponents = () => {
+    window.setTimeout(() => {
+      var widgetFactory = new WidgetFactory();
+      var figures = document.getElementsByTagName( 'figure' );
+
+      for (var i = 0; i < figures.length; i++) {
+        var figure = figures[i];
+
+        var componentElement = figure.getElementsByClassName("pearson-component")[0];
+        this.nodesToUnMount.push(componentElement);
+        if (componentElement) {
+          const type = componentElement.getAttribute('data-type');
+          if (type === 'audio') {
+            var widgetData = widgetFactory.getData(figure);
+            widgetData.muiTheme = this.context.muiTheme;
+            var figureWidget = widgetFactory.getWidget(widgetData);
+
+            ReactDOM.render(figureWidget, componentElement);
+          }
+        }
+      }
+    })
+  };
+
   renderEmpty() {
     return (
       <div className="empty-help" >
@@ -31,7 +60,7 @@ class Viewer extends React.Component {
 
   renderContent() {
     return (
-      <div className="player-content" dangerouslySetInnerHTML={{ __html: this.state.content }} />
+      <div className="player-content" dangerouslySetInnerHTML={{ __html: this.state.content }} ref={this.loadComponents} />
     );
   }
 
@@ -57,6 +86,13 @@ class Viewer extends React.Component {
       isFirstPage: targetPageIndex <= 0,
       isLastPage: targetPageIndex >= pages.length - 1
     });
+
+    //unmount all MMI components in the current page and load the ones in the new page.
+    this.nodesToUnMount.forEach((node) => {
+      ReactDOM.unmountComponentAtNode(node);
+    });
+
+    this.loadComponents();
 
     // check for bookmarked page or not
     /* const targetBookMark = find(that.props.store.getState().bookmarks, function(bookmarks) { return bookmarks.uri === targetPage.id; });
