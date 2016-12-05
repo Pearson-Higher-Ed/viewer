@@ -21,6 +21,10 @@ class Viewer extends React.Component {
     this.navigationChanged = this.navigationChanged.bind(this);
   }
 
+  componentDidMount() {
+    document.body.dispatchEvent(new CustomEvent('contentLoaded'));
+  }
+
   renderEmpty() {
     return (
       <div className="empty-help" >
@@ -57,6 +61,8 @@ class Viewer extends React.Component {
       isFirstPage: targetPageIndex <= 0,
       isLastPage: targetPageIndex >= pages.length - 1
     });
+
+    document.body.dispatchEvent(new CustomEvent('navChanged'));
 
     // check for bookmarked page or not
     /* const targetBookMark = find(that.props.store.getState().bookmarks, function(bookmarks) { return bookmarks.uri === targetPage.id; });
