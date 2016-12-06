@@ -48,7 +48,7 @@ class Viewer extends React.Component {
     /* eslint-enable */
 
     // Update application state
-    // that.props.store.dispatch(that.props.actions.goToPage(targetPageId));
+    that.props.goToPageCallback(targetPageId);
 
     // Update component state
     that.setState({
