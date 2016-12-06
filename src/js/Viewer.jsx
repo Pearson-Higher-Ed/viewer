@@ -22,7 +22,7 @@ class Viewer extends React.Component {
   }
 
   componentDidMount() {
-    document.body.dispatchEvent(new CustomEvent('contentLoaded'));
+    document.body.dispatchEvent(new CustomEvent('contentLoaded')); // eslint-disable-line 
   }
 
   renderEmpty() {
@@ -62,7 +62,7 @@ class Viewer extends React.Component {
       isLastPage: targetPageIndex >= pages.length - 1
     });
 
-    document.body.dispatchEvent(new CustomEvent('navChanged'));
+    document.body.dispatchEvent(new CustomEvent('navChanged')); // eslint-disable-line 
 
     // check for bookmarked page or not
     /* const targetBookMark = find(that.props.store.getState().bookmarks, function(bookmarks) { return bookmarks.uri === targetPage.id; });

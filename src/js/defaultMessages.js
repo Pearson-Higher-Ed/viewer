@@ -1,6 +1,7 @@
-import {defineMessages} from 'react-intl';
+import { defineMessages } from 'react-intl';
 
-export const messages = defineMessages({
+// TODO fix this eslint error
+export const messages = defineMessages({ // eslint-disable-line 
   title: {
     id: 'title',
     defaultMessage: 'Viewer'

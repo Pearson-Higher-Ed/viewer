@@ -17,6 +17,10 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+function clientCallback() {
+  alert("client callback");
+}
+
 function init() {
   const locale = getParameterByName('locale');
 
@@ -30,7 +34,8 @@ function init() {
         { id: 'abc124', title: 'Title of Page 2', 'content': '<html>Hello World! This is Page 2.</html>' },
         { id: 'abc125', title: 'Title of Page 3', 'content': '<html>Hello World! This is Page 3.</html>' }
       ]
-    }
+    },
+    goToPageCallback: clientCallback
   });
 }
 
