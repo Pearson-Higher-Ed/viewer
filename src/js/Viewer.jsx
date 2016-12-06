@@ -25,6 +25,11 @@ class Viewer extends React.Component {
     document.body.dispatchEvent(new CustomEvent('contentLoaded')); // eslint-disable-line 
   }
 
+  componentWillReceiveProps(nextProps) {
+    // Listen to redux for page changes  
+    this.navigationChanged(nextProps.data.currentPageId);   
+  }
+
   renderEmpty() {
     return (
       <div className="empty-help" >
@@ -46,9 +51,6 @@ class Viewer extends React.Component {
     const targetPage = find(pages, function(page) { return page.id === targetPageId; });
     const targetPageIndex = findIndex( pages, function(page) { return page.id === targetPageId; } );
     /* eslint-enable */
-
-    // Update application state
-    that.props.goToPageCallback(targetPageId);
 
     // Update component state
     that.setState({
@@ -91,7 +93,7 @@ class Viewer extends React.Component {
         <div className="viewer-body">
           {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
         </div>
-        <Navigation data={this.state} pages={this.props.data.pages} callbackParent={this.navigationChanged} />
+        <Navigation data={this.state} pages={this.props.data.pages} callbackParent={this.props.goToPageCallback} />
       </div>
     );
   }
