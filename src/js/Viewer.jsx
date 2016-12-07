@@ -84,6 +84,7 @@ class Viewer extends React.Component {
       if (reqId !== null) {
         this.navigationChanged(reqId);
       }
+      window.scroll(0, 0);
     }
   }
 
