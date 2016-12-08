@@ -82,7 +82,7 @@ class Viewer extends React.Component {
         reqId = this.state.isLastPage ? null : this.props.data.pages[currentIndex + 1].id;
       }
       if (reqId !== null) {
-        this.navigationChanged(reqId);
+        this.props.goToPageCallback(reqId)
       }
       window.scroll(0, 0);
     }
