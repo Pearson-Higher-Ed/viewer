@@ -27,7 +27,9 @@ class Viewer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     // Listen to redux for page changes  
-    this.navigationChanged(nextProps.data.currentPageId);   
+    if (this.props.data.currentPageId !== nextProps.data.currentPageId) {
+      this.navigationChanged(nextProps.data.currentPageId);
+    }
   }
 
   renderEmpty() {
