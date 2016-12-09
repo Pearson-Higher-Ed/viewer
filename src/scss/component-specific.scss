@@ -38,6 +38,7 @@
     text-align: center;
     margin-top: 12px;
     vertical-align: top;
+    min-width: 215px;
   }
   .nextSection {
     display: inline-block;
@@ -49,6 +50,7 @@
     .nextContent {
       width: 100%;
       float: left;
+      min-width: 215px; 
       .wrapper {
         width: 88%;
         float: left;
@@ -71,6 +73,7 @@
     .prevContent {
       width: 100%;
       float: left;
+      min-width: 215px; 
       .wrapper {
         width: 88%;
         float: left;
