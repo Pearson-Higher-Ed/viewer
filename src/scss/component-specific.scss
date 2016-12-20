@@ -39,6 +39,7 @@
     margin-top: 12px;
     vertical-align: top;
     min-width: 215px;
+    outline: none;
   }
   .nextSection {
     display: inline-block;
@@ -46,6 +47,7 @@
     width: 32%;
     padding-left: 4%;
     float: right;
+    outline: none;
     cursor: pointer;
     .nextContent {
       width: 100%;
@@ -70,6 +72,7 @@
     color: #3e3e3e;
     width: 32%;
     cursor: pointer;
+    outline: none;
     .prevContent {
       width: 100%;
       float: left;
