@@ -1,6 +1,6 @@
 import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
-
+import ReactDOM from 'react-dom';
 
 class Navigation extends React.Component {
   constructor(props) {
