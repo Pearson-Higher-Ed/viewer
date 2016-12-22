@@ -58,6 +58,30 @@ class Navigation extends React.Component {
     this.props.callbackParent(goToPageId);
     window.scroll(0, 0);
   }
+  handleFocus = (section, event) => {
+    console.log(this.refs);
+    if(section == 'prevSection') {
+      ReactDOM.findDOMNode(this.refs.ps).classList.add('focus');
+    } 
+    else if(section == 'currentSection') {
+      ReactDOM.findDOMNode(this.refs.cs).classList.add('focus');
+    } 
+    else if(section == 'nextSection') {
+      ReactDOM.findDOMNode(this.refs.ns).classList.add('focus');
+    }
+  }
+  removeFocus = (section, event) => {
+    console.log(this.refs);
+    if(section == 'prevSection') {
+      ReactDOM.findDOMNode(this.refs.ps).classList.remove('focus');
+    } 
+    else if(section == 'currentSection') {
+      ReactDOM.findDOMNode(this.refs.cs).classList.remove('focus');
+    } 
+    else if(section == 'nextSection') {
+      ReactDOM.findDOMNode(this.refs.ns).classList.remove('focus');
+    }
+  };
 
   render() {
     const prevText = 'Previous';
@@ -91,7 +115,7 @@ class Navigation extends React.Component {
     /* eslint-enable */
     return (
       <div className={this.state.classname}>
-        <div tabIndex="0" className={`prevSection section ${this.props.data.isFirstPage ? 'hide' : ''}`} title={this.props.data.prevPageTitle} onClick={() => this.sectionClk(false)} onKeyPress={() => this.sectionClk(false)}>
+        <div tabIndex="0" className={`prevSection section ${this.props.data.isFirstPage ? 'hide' : ''}`} ref="ps" title={this.props.data.prevPageTitle} onClick={() => this.sectionClk(false)} onKeyPress={() => this.sectionClk(false)} onKeyUp={() => this.handleFocus('prevSection')} onBlur={() => this.removeFocus('prevSection')}>
           <div className="prevContent">
             <PrevBtn viewBox="24 28 18 9" style={style.prevBtn} />
             <div className="wrapper">
@@ -102,10 +126,10 @@ class Navigation extends React.Component {
         </div>
 
         <div className={`line ${this.props.data.isFirstPage ? 'hide' : ''}`} />
-        <div tabIndex="0" className="currentSection section">Page {this.props.data.currentPageNo}</div>
+        <div tabIndex="0" className="currentSection section" ref="cs" onKeyUp={() => this.handleFocus('currentSection')}onBlur={() => this.removeFocus('currentSection')}>Page {this.props.data.currentPageNo}</div>
         <div className={`line ${this.props.data.isLastPage ? 'hide' : ''}`} />
 
-        <div tabIndex="0" className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)} onKeyPress={() => this.sectionClk(true)} >
+        <div tabIndex="0" className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} ref="ns" title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)} onKeyPress={() => this.sectionClk(true)} onKeyUp={() => this.handleFocus('nextSection')} onBlur={() => this.removeFocus('nextSection')} >
           <div className="nextContent">
             <div className="wrapper">
               <div className="label">{nextText}</div>
