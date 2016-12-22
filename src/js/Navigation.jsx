@@ -1,6 +1,7 @@
 import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
 
+
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
