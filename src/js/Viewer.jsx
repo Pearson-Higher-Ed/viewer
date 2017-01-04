@@ -7,16 +7,22 @@ class Viewer extends React.Component {
   constructor(props) {
     super(props);
 
+    const currentPageId = (this.props.data.currentPageId ? this.props.data.currentPageId : this.props.data.pages[0].id);
+    const currentPageIndex = (this.props.data.pages.findIndex(page => page.id === currentPageId));
+    const currentPageNo = currentPageIndex + 1;
+    const currentPageObj = (this.props.data.pages.find(page => page.id === currentPageId));
+
     this.state = {
-      currentPageNo: 1,
+      currentPageNo,
       totalPages: this.props.data.pages.length,
-      content: this.props.data.pages[0].content,
-      currentPageId: this.props.data.pages[0].id,
-      currentPageTitle: this.props.data.pages[0].title,
-      prevPageTitle: '',
-      nextPageTitle: (this.props.data.pages.length >= 0) ? this.props.data.pages[1].title : '',
-      isFirstPage: true,
-      isLastPage: false
+      content: currentPageObj.content,
+      currentPageId,
+      currentPageTitle: currentPageObj.title,
+      prevPageTitle: (currentPageIndex <= 0) ? '' : this.props.data.pages[currentPageIndex - 1].title,
+      nextPageTitle: (this.props.data.pages.length >= 0 && currentPageNo < this.props.data.pages.length) ?
+        this.props.data.pages[currentPageNo].title : '',
+      isFirstPage: currentPageNo === 1,
+      isLastPage: currentPageNo === this.props.data.pages.length
     };
     this.navigationChanged = this.navigationChanged.bind(this);
   }
@@ -26,7 +32,7 @@ class Viewer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // Listen to redux for page changes  
+    // Listen to redux for page changes
     if (this.props.data.currentPageId !== nextProps.data.currentPageId) {
       this.navigationChanged(nextProps.data.currentPageId);
     }
@@ -84,7 +90,7 @@ class Viewer extends React.Component {
         reqId = this.state.isLastPage ? null : this.props.data.pages[currentIndex + 1].id;
       }
       if (reqId !== null) {
-        this.props.goToPageCallback(reqId)
+        this.props.goToPageCallback(reqId);
       }
       window.scroll(0, 0);
     }
@@ -103,7 +109,8 @@ class Viewer extends React.Component {
 }
 
 Viewer.propTypes = {
-  data: React.PropTypes.object.isRequired
+  data: React.PropTypes.object.isRequired,
+  goToPageCallback: React.PropTypes.func.isRequired
 };
 
 export default Viewer;
