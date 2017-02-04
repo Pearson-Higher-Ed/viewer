@@ -19,6 +19,7 @@
   bottom: 0;
   background-color: #FFF;
   width: 100%;
+  z-index:200;
   -webkit-transition: all .25s;
   transition: all .25s;
   .hide {
@@ -40,6 +41,7 @@
     vertical-align: top;
     min-width: 215px;
     outline: none;
+    visibility: hidden;
   }
   .nextSection {
     display: inline-block;
@@ -69,7 +71,7 @@
   }
   .prevSection {
     display: inline-block;
-    color: #3e3e3e;
+    color: #007fa3;
     width: 32%;
     cursor: pointer;
     outline: none;
@@ -82,7 +84,7 @@
         float: left;
         margin: 0 0 0 5.5%;
         .label {
-          color: #3e3e3e;
+          color: #007fa3;
           font-size: 16px;
           text-align: left;
         }
