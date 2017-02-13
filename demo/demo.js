@@ -21,6 +21,10 @@ function clientCallback() {
   alert("client callback");
 }
 
+function viewerDidMount() {
+  alert("component did mount");
+}
+
 function init() {
   const locale = getParameterByName('locale');
 
@@ -35,7 +39,8 @@ function init() {
         { id: 'abc125', title: 'Title of Page 3', 'content': '<html>Hello World! This is Page 3.</html>' }
       ]
     },
-    goToPageCallback: clientCallback
+    goToPageCallback: clientCallback,
+    viewerDidMount: viewerDidMount
   });
 }
 

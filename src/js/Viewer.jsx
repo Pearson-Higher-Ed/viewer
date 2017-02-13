@@ -28,6 +28,7 @@ class Viewer extends React.Component {
   }
 
   componentDidMount() {
+    this.props.viewerDidMount(this.state.currentPageId);
     document.body.dispatchEvent(new CustomEvent('contentLoaded')); // eslint-disable-line 
   }
 
@@ -110,7 +111,8 @@ class Viewer extends React.Component {
 
 Viewer.propTypes = {
   data: React.PropTypes.object.isRequired,
-  goToPageCallback: React.PropTypes.func.isRequired
+  goToPageCallback: React.PropTypes.func.isRequired,
+  viewerDidMount: React.PropTypes.func
 };
 
 export default Viewer;
