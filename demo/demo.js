@@ -21,8 +21,8 @@ function clientCallback() {
   alert("client callback");
 }
 
-function viewerDidMount() {
-  alert("component did mount");
+function viewerLoaded() {
+  alert("Viewer Loaded");
 }
 
 function init() {
@@ -40,7 +40,7 @@ function init() {
       ]
     },
     goToPageCallback: clientCallback,
-    viewerDidMount: viewerDidMount
+    viewerLoaded: viewerLoaded
   });
 }
 

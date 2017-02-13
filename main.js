@@ -29,7 +29,7 @@ export default class ViewerComponent {
 
     ReactDOM.render( 
       <IntlProvider locale={locale} messages={translations[locale]}>
-        <ComponentOwner data={config.data} goToPageCallback={config.goToPageCallback} viewerDidMount={config.viewerDidMount}/> 
+        <ComponentOwner data={config.data} goToPageCallback={config.goToPageCallback} viewerLoaded={config.viewerLoaded}/> 
       </IntlProvider> ,
       document.getElementById(config.elementId)
     );
