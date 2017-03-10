@@ -1,6 +1,7 @@
 import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
 import ReactDOM from 'react-dom';
+import { messages } from './defaultMessages';
 
 
 class Navigation extends React.Component {
@@ -94,6 +95,7 @@ class Navigation extends React.Component {
   render() {
     const prevText = 'Previous';
     const nextText = 'Next';
+    const { formatMessage } = this.props.intl;
     const style = {
       nextBtn: {
         height: '9px',
@@ -127,20 +129,20 @@ class Navigation extends React.Component {
           <div className="prevContent">
             <PrevBtn viewBox="24 28 18 9" style={style.prevBtn} />
             <div className="wrapper">
-              <div className="label">{prevText}</div>
+              <div className="label">{formatMessage(messages.previous)}</div>
               <div className="content">{this.props.data.prevPageTitle}</div>
             </div>
           </div>
         </div>
 
         <div className={`line ${this.props.data.isFirstPage ? 'hide' : ''}`} />
-        <div tabIndex="0" className="currentSection section" ref="cs" onKeyUp={() => this.handleFocus('currentSection')}onBlur={() => this.removeFocus('currentSection')}>Page {this.props.data.currentPageNo}</div>
+        <div tabIndex="0" className="currentSection section" ref="cs" onKeyUp={() => this.handleFocus('currentSection')}onBlur={() => this.removeFocus('currentSection')}>{formatMessage(messages.page)} {this.props.data.currentPageNo}</div>
         <div className={`line ${this.props.data.isLastPage ? 'hide' : ''}`} />
 
-        <div tabIndex="0" className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} ref="ns" title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)} onKeyPress={() => this.sectionClk(true)} onKeyUp={() => this.handleFocus('nextSection')} onBlur={() => this.removeFocus('nextSection')} >
+        <div tabIndex="0" aria-label={formatMessage(messages.next)} className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`} ref="ns" title={this.props.data.nextPageTitle} onClick={() => this.sectionClk(true)} onKeyPress={() => this.sectionClk(true)} onKeyUp={() => this.handleFocus('nextSection')} onBlur={() => this.removeFocus('nextSection')} >
           <div className="nextContent">
             <div className="wrapper">
-              <div className="label">{nextText}</div>
+              <div className="label">{formatMessage(messages.next)}</div>
               <div className="content">{this.props.data.nextPageTitle}</div>
             </div>
             <NextBtn viewBox="1209 28 18 9" style={style.nextBtn} />

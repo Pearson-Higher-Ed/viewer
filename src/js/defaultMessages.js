@@ -9,5 +9,18 @@ export const messages = defineMessages({ // eslint-disable-line
   emptyMessage: {
     id: 'emptyMessage',
     defaultMessage: 'Your viewer is empty'
+  },
+  next: {
+    id: 'next',
+    defaultMessage: 'Next'
+  },
+  previous: {
+    id: 'previous',
+    defaultMessage: 'Previous'
+  },
+  page: {
+    id: 'page',
+    defaultMessage: 'Page Number'
   }
+
 });

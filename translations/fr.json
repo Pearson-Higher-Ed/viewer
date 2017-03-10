@@ -1,4 +1,7 @@
 {
   "title": "Téléspectateur",
-  "emptyMessage": "Votre Téléspectateur est vide."
+  "emptyMessage": "Votre Téléspectateur est vide.",
+  "next": "prochain",
+  "previous": "précédent",
+  "page": "Numéro de page"
 }

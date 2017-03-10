@@ -1,21 +1,20 @@
 /* eslint-disable */
 import Viewer from '../main';
+import { addLocaleData } from 'react-intl';
+import enLocaleData from 'react-intl/locale-data/en';
+import frLocaleData from 'react-intl/locale-data/fr';
+import tsLocaleData from 'react-intl/locale-data/ts';
+import BookmarkListDemo from '../main.js'; // eslint-disable-line no-unused-vars
 
-function getParameterByName(name, url) {
-  if (!url) {
-    url = window.location.href;
-  }
-  name = name.replace(/[\[\]]/g, '\\$&');
-  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-  const results = regex.exec(url);
-  if (!results) {
-    return null;
-  }
-  if (!results[2]) {
-    return '';
-  }
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+const localeData = {
+  en: enLocaleData,
+  fr: frLocaleData,
+  ts: tsLocaleData
+};
+function getParam(item) {
+  const svalue = location.search.match(new RegExp('[\?\&]' + item + '=([^\&]*)(\&?)', 'i'));
+  return svalue ? svalue[1] : svalue;
+ }
 
 function clientCallback() {
   alert("client callback");
@@ -26,11 +25,12 @@ function viewerLoaded() {
 }
 
 function init() {
-  const locale = getParameterByName('locale');
+  const region = getParam('lang') || 'en';
+  addLocaleData(localeData[region]);
 
   new Viewer({
     elementId: 'viewer-container',
-    locale: locale,
+    locale: region,
     data: {
       currentPageId: 'abc123',
       pages: [

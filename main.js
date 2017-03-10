@@ -4,19 +4,12 @@ import { addLocaleData, IntlProvider } from 'react-intl';
 import frLocaleData from 'react-intl/locale-data/fr';
 import itLocaleData from 'react-intl/locale-data/it';
 import nlLocaleData from 'react-intl/locale-data/nl';
-import frJson from './translations/fr.json';
-import itJson from './translations/it.json';
-import nlJson from './translations/nl.json';
 import './main.scss';
 import ComponentOwner from './src/js/component-owner';
+import InternationalSupport from './src/js/InternationalSupport';
 
-const translations = {
-  fr: frJson,
-  it: itJson,
-  nl: nlJson
-};
 /* eslint-disable */
-export default class ViewerComponent {
+export default class ViewerDemo {
   constructor(config) {
     addLocaleData(frLocaleData);
     addLocaleData(itLocaleData);
@@ -25,10 +18,10 @@ export default class ViewerComponent {
   }
 
   init(config) {
-    const locale = config.locale ? config.locale : 'en';
+    this.intlObj = new InternationalSupport(config.locale);
 
     ReactDOM.render( 
-      <IntlProvider locale={locale} messages={translations[locale]}>
+      <IntlProvider locale={this.intlObj.getLocale()} messages={this.intlObj.getMessages()}>
         <ComponentOwner data={config.data} goToPageCallback={config.goToPageCallback} viewerLoaded={config.viewerLoaded}/> 
       </IntlProvider> ,
       document.getElementById(config.elementId)
@@ -36,7 +29,7 @@ export default class ViewerComponent {
   }
 }
 /* eslint-enable */
-export Viewer from './src/js/Viewer';
+export ViewerComponent from './src/js/ViewerComponent';
 
 // Listen for client events to initialize a new Viewer component
-document.body.addEventListener('o.InitViewer', e => new ViewerComponent(e.detail));
+document.body.addEventListener('o.InitViewer', e => new ViewerDemo(e.detail));

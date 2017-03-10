@@ -1,4 +1,5 @@
 import React from 'react';
+import { intlShape, injectIntl } from 'react-intl';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import Navigation from './Navigation';
@@ -103,16 +104,20 @@ class Viewer extends React.Component {
         <div className="viewer-body">
           {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
         </div>
-        <Navigation data={this.state} pages={this.props.data.pages} callbackParent={this.props.goToPageCallback} />
+        <Navigation
+          intl={this.props.intl} data={this.state}
+          pages={this.props.data.pages} callbackParent={this.props.goToPageCallback}
+        />
       </div>
     );
   }
 }
 
 Viewer.propTypes = {
+  intl: intlShape.isRequired,
   data: React.PropTypes.object.isRequired,
   goToPageCallback: React.PropTypes.func.isRequired,
   viewerLoaded: React.PropTypes.func
 };
 
-export default Viewer;
+export default injectIntl(Viewer);
