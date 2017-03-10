@@ -29,7 +29,7 @@ export default class ViewerDemo {
   }
 }
 /* eslint-enable */
-export ViewerComponent from './src/js/ViewerComponent';
+export { ViewerComponent } from './src/js/ViewerComponent';
 
 // Listen for client events to initialize a new Viewer component
 document.body.addEventListener('o.InitViewer', e => new ViewerDemo(e.detail));
