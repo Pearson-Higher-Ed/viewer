@@ -13,7 +13,7 @@
 .navigation {
   height: 65px;
   border-top: 1px solid #c7c7c7;
-  padding: 1% 1.7%;
+  padding: 14px;
   line-height: 1.195;
   position: fixed;
   bottom: 0;
@@ -115,4 +115,43 @@
   bottom: -65px;
 }
 
-.navigation .label {}
+@media (max-width: 1024px) {  
+  .navigation .prevSection .prevContent .wrapper {
+    width: 86% !important; 
+  }
+}
+
+@media (max-width: 736px) {
+  .navigation .prevSection {
+    width: 50px !important;
+  }
+  .navigation .prevSection .prevContent {
+    min-width: 0px !important;
+  }
+  .navigation .prevSection .prevContent .wrapper {
+    display: none;
+  }
+  .navigation .prevSection .prevContent  svg {
+    margin-left: 10px !important;
+  }
+  .navigation .currentSection {
+    display: none !important;
+  }
+  .navigation > .line {   
+    display: none !important;
+  }
+  .navigation > .line ~ .line {   
+    display: inline-block !important;
+  }
+  .navigation .nextSection {
+    width: 86% !important;
+    padding-right: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation .nextSection {
+    width: 83% !important;
+    padding-right: 14px !important;
+  }
+}
