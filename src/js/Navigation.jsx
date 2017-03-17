@@ -156,7 +156,7 @@ class Navigation extends React.Component {
 Navigation.propTypes = {
   data: React.PropTypes.object.isRequired,
   pages: React.PropTypes.array.isRequired,
-  callbackParent: React.PropTypes.func.isRequired
+  callbackParent: React.PropTypes.func
 };
 
 export default Navigation;

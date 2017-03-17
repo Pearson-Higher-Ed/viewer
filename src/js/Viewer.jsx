@@ -29,7 +29,9 @@ class Viewer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.viewerLoaded(this.state.currentPageId);
+    if (this.props.viewerLoaded) {
+      this.props.viewerLoaded(this.state.currentPageId);
+    }
     document.body.dispatchEvent(new CustomEvent('contentLoaded')); // eslint-disable-line 
   }
 
@@ -98,16 +100,23 @@ class Viewer extends React.Component {
     }
   }
 
+  renderNav = () => {
+    let navigation = '';
+    if (this.props.data.pages.length > 1) {
+      navigation = (<Navigation
+        intl={this.props.intl} data={this.state}
+        pages={this.props.data.pages} callbackParent={this.props.goToPageCallback}
+      />);
+    }
+    return navigation;
+  }
   render() {
     return (
       <div id="viewer" role="main" tabIndex="0" onKeyUp={this.arrowNavigation}>
         <div className="viewer-body">
           {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
         </div>
-        <Navigation
-          intl={this.props.intl} data={this.state}
-          pages={this.props.data.pages} callbackParent={this.props.goToPageCallback}
-        />
+        {this.renderNav()}
       </div>
     );
   }
@@ -116,7 +125,7 @@ class Viewer extends React.Component {
 Viewer.propTypes = {
   intl: intlShape.isRequired,
   data: React.PropTypes.object.isRequired,
-  goToPageCallback: React.PropTypes.func.isRequired,
+  goToPageCallback: React.PropTypes.func,
   viewerLoaded: React.PropTypes.func
 };
 
