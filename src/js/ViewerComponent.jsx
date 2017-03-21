@@ -10,6 +10,9 @@ export const ViewerComponent = function ViewerComponent(paramsObj) { // eslint-d
       data={paramsObj.data}
       goToPageCallback={paramsObj.goToPageCallback}
       viewerLoaded={paramsObj.viewerLoaded}
+      isET1 = {paramsObj.isET1}
+      getPrevNextPage = {paramsObj.getPrevNextPage}
+      pages={paramsObj.pages}
     />
   </IntlProvider>);
 };
