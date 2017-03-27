@@ -54,9 +54,18 @@ class Navigation extends React.Component {
       }
     }, 100);
     /* eslint-enable */
-  }
+}
 
   sectionClk = (isNext) => {
+  if(this.props.isET1 === 'Y'){
+  if(isNext){
+  this.props.goToPageCallback('next')
+  }else{
+  this.props.goToPageCallback('prev')
+  }
+}
+else
+{
     const currentIndex = this.props.data.currentPageNo - 1;
     let goToPageId;
     if (!isNext && !this.props.data.isFirstPage) {
@@ -66,6 +75,7 @@ class Navigation extends React.Component {
     }
     this.props.callbackParent(goToPageId);
     window.scroll(0, 0);
+}
   }
   handleFocus = (section, event) => {
     console.log(this.refs);
@@ -91,6 +101,24 @@ class Navigation extends React.Component {
       ReactDOM.findDOMNode(this.refs.ns).classList.remove('focus');
     }
   };
+
+  getPageNumber = (pageType) => {
+    var pageNumber;
+    if(pageType=="prev"){
+       pageNumber = this.props.getPrevNextPage("prev");
+       
+      return 'Page '+pageNumber;
+    }
+    else if(pageType=="next"){
+     pageNumber = this.props.getPrevNextPage("next");
+     return 'Page '+pageNumber;;
+    }
+    else if(pageType=="last"){
+     pageNumber = this.props.getPrevNextPage("last");
+     return 'Page '+pageNumber;;
+    }
+
+  }
 
   render() {
     const prevText = 'Previous';
@@ -130,7 +158,7 @@ class Navigation extends React.Component {
             <PrevBtn viewBox="24 28 18 9" style={style.prevBtn} />
             <div className="wrapper">
               <div className="label">{formatMessage(messages.previous)}</div>
-              <div className="content">{this.props.data.prevPageTitle}</div>
+              {this.props.isET1==='Y' ? <div className="content">{this.getPageNumber("prev")}</div>:<div className="content">{this.props.data.prevPageTitle}</div>}
             </div>
           </div>
         </div>
@@ -143,7 +171,7 @@ class Navigation extends React.Component {
           <div className="nextContent">
             <div className="wrapper">
               <div className="label">{formatMessage(messages.next)}</div>
-              <div className="content">{this.props.data.nextPageTitle}</div>
+              {this.props.isET1==='Y' ? <div className="content">{this.getPageNumber("next")}</div>:<div className="content">{this.props.data.nextPageTitle}</div>}
             </div>
             <NextBtn viewBox="1209 28 18 9" style={style.nextBtn} />
           </div>
