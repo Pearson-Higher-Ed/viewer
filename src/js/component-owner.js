@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { darkBlack, fullBlack } from 'material-ui/styles/colors';
 
-import Viewer from './Viewer';
+import { ViewerComponent } from './ViewerComponent';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -23,12 +23,14 @@ class ComponentOwner extends React.Component {
   }
   /* eslint-enable */
   render() {
+    console.log(typeof this.props.goToPageCallback);
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <Viewer
+        <ViewerComponent
           data={this.props.data}
           goToPageCallback={this.props.goToPageCallback}
           viewerLoaded={this.props.viewerLoaded}
+          locale={this.props.intl.locale}
         />
       </MuiThemeProvider>
     );
@@ -42,7 +44,8 @@ ComponentOwner.childContextTypes = {
 ComponentOwner.propTypes = {
   data: PropTypes.object.isRequired,
   goToPageCallback: PropTypes.object.func,
-  viewerLoaded: PropTypes.object.func
+  viewerLoaded: PropTypes.object.func,
+  intl: intlShape
 };
 
 export default injectIntl(ComponentOwner); // Inject this.props.intl into the component context
