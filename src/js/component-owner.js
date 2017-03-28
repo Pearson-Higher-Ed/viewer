@@ -23,7 +23,7 @@ class ComponentOwner extends React.Component {
   }
   /* eslint-enable */
   render() {
-    console.log(typeof this.props.goToPageCallback);
+
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <ViewerComponent
