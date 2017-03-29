@@ -16,6 +16,7 @@
     "ci": "npm test && npm run build",
     "release": "node ./npm_scripts/release.js",
     "verify": "node ./npm_scripts/verify.js",
+    "prebuild": "npm run pseudoloc",
     "pseudoloc": "./node_modules/pseudoloc/bin/pseudoloc --readFile ./translations/en.json --writeFile ./translations/pseudo.json"
   },
   "author": "Arish Krishnan",
@@ -28,7 +29,8 @@
     "contentful": "^3.5.0",
     "estraverse-fb": "^1.3.1",
     "lodash": "^4.16.4",
-    "react-intl": "~2.0.1"
+    "react-intl": "~2.0.1",
+    "@pearson-incubator/aquila-js-core": "^0.2.32"
   },
   "devDependencies": {
     "@pearson-components/npm-scripts": "^0.1.0",
