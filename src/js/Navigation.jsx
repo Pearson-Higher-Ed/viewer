@@ -1,6 +1,7 @@
 import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
 import ReactDOM from 'react-dom';
+import { AnalyticsManager } from '@pearson-incubator/aquila-js-core';
 import { messages } from './defaultMessages';
 
 
@@ -75,6 +76,11 @@ else
     }
     this.props.callbackParent(goToPageId);
     window.scroll(0, 0);
+    AnalyticsManager.dispatch({
+      category: 'Navigation',
+      action: isNext ? 'Next' : 'Prev',
+      label: goToPageId
+    });
 }
   }
   handleFocus = (section, event) => {
