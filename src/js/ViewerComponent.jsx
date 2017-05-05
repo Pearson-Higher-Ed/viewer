@@ -7,13 +7,13 @@ import msgObject from '../../translations';
 export const ViewerComponent = function ViewerComponent(paramsObj) { // eslint-disable-line import/prefer-default-export
   const intlObj = new InternationalSupport(msgObject, paramsObj.locale);
   return (<IntlProvider locale={intlObj.getLocale()} messages={intlObj.getMessages()}>
-      <Viewer
-        data={paramsObj.data}
-        goToPageCallback={paramsObj.goToPageCallback}
-        viewerLoaded={paramsObj.viewerLoaded}
-        isET1 = {paramsObj.isET1}
-        getPrevNextPage = {paramsObj.getPrevNextPage}
-        pages={paramsObj.pages}
-      />
-    </IntlProvider>);
+    <Viewer
+      data={paramsObj.data}
+      goToPageCallback={paramsObj.goToPageCallback}
+      viewerLoaded={paramsObj.viewerLoaded}
+      isET1={paramsObj.isET1}
+      getPrevNextPage={paramsObj.getPrevNextPage}
+      pages={paramsObj.pages}
+    />
+  </IntlProvider>);
 };
