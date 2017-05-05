@@ -22,11 +22,9 @@ class Navigation extends React.Component {
     const that = this;
     let didScroll = false;
     let lastScrollPosition = 0;
-
     if ((window.pageYOffset) != 0) {
       window.scroll(0, 0);
     }
-
     /* eslint-disable */
     window.addEventListener('scroll', function() {
       didScroll = true;
