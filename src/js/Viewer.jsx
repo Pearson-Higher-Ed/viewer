@@ -7,27 +7,27 @@ import Navigation from './Navigation';
 class Viewer extends React.Component {
   constructor(props) {
     super(props);
-     if(props.isET1 !== 'Y'){
-    const currentPageId = (this.props.data.currentPageId ? this.props.data.currentPageId : this.props.data.pages[0].id);
-    const currentPageIndex = (this.props.data.pages.findIndex(page => page.id === currentPageId));
-    const currentPageNo = currentPageIndex + 1;
-    const currentPageObj = (this.props.data.pages.find(page => page.id === currentPageId));
+    if (props.isET1 !== 'Y') {
+      const currentPageId = (this.props.data.currentPageId ? this.props.data.currentPageId : this.props.data.pages[0].id);
+      const currentPageIndex = (this.props.data.pages.findIndex(page => page.id === currentPageId));
+      const currentPageNo = currentPageIndex + 1;
+      const currentPageObj = (this.props.data.pages.find(page => page.id === currentPageId));
 
-    this.state = {
-      currentPageNo,
-      totalPages: this.props.data.pages.length,
-      content: currentPageObj.content,
-      currentPageId,
-      currentPageTitle: currentPageObj.title,
-      prevPageTitle: (currentPageIndex <= 0) ? '' : this.props.data.pages[currentPageIndex - 1].title,
-      nextPageTitle: (this.props.data.pages.length >= 0 && currentPageNo < this.props.data.pages.length) ?
+      this.state = {
+        currentPageNo,
+        totalPages: this.props.data.pages.length,
+        content: currentPageObj.content,
+        currentPageId,
+        currentPageTitle: currentPageObj.title,
+        prevPageTitle: (currentPageIndex <= 0) ? '' : this.props.data.pages[currentPageIndex - 1].title,
+        nextPageTitle: (this.props.data.pages.length >= 0 && currentPageNo < this.props.data.pages.length) ?
         this.props.data.pages[currentPageNo].title : '',
-      isFirstPage: currentPageNo === 1,
-      isLastPage: currentPageNo === this.props.data.pages.length
-    };
-    this.navigationChanged = this.navigationChanged.bind(this);
+        isFirstPage: currentPageNo === 1,
+        isLastPage: currentPageNo === this.props.data.pages.length
+      };
+      this.navigationChanged = this.navigationChanged.bind(this);
+    }
   }
-}
 
   componentDidMount() {
     if (this.props.viewerLoaded) {
@@ -38,12 +38,12 @@ class Viewer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     // Listen to redux for page changes
-    if(nextProps.isET1 !=='Y'){
-    if (this.props.data.currentPageId !== nextProps.data.currentPageId) {
-      this.navigationChanged(nextProps.data.currentPageId);
+    if (nextProps.isET1 !== 'Y') {
+      if (this.props.data.currentPageId !== nextProps.data.currentPageId) {
+        this.navigationChanged(nextProps.data.currentPageId);
+      }
     }
   }
-}
   renderEmpty() {
     return (
       <div className="empty-help" >
@@ -114,22 +114,24 @@ class Viewer extends React.Component {
   }
   render() {
     return (
-    <div>
-   
-      {this.props.isET1==='Y' ? <div id="viewer" role="main" tabIndex="0">
-        <Navigation intl={this.props.intl} isET1={this.props.isET1}   goToPageCallback={this.props.goToPageCallback}
-         data = {this.props.data}
-         getPrevNextPage={this.props.getPrevNextPage}
-         pages={this.props.pages}/>
-      </div>:<div id="viewer" role="main" tabIndex="0" onKeyUp={this.arrowNavigation}>
-        <div className="viewer-body">
-          {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
+      <div>
+
+        {this.props.isET1 === 'Y' ? <div id="viewer" role="main" tabIndex="0">
+          <Navigation
+            intl={this.props.intl} isET1={this.props.isET1} goToPageCallback={this.props.goToPageCallback}
+            data={this.props.data}
+            getPrevNextPage={this.props.getPrevNextPage}
+            pages={this.props.pages}
+          />
+        </div> : <div id="viewer" role="main" tabIndex="0" onKeyUp={this.arrowNavigation}>
+          <div className="viewer-body">
+            {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
+          </div>
+          {this.renderNav()}
         </div>
-        {this.renderNav()}
-      </div>   
       }
-      
-    </div>
+
+      </div>
     );
   }
 }

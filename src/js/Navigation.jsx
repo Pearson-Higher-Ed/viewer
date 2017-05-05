@@ -13,7 +13,7 @@ class Navigation extends React.Component {
     };
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.navInterval && clearInterval(this.navInterval);
     this.navInterval = false;
   }
@@ -22,6 +22,11 @@ class Navigation extends React.Component {
     const that = this;
     let didScroll = false;
     let lastScrollPosition = 0;
+
+    if ((window.pageYOffset) != 0) {
+      window.scroll(0, 0);
+    }
+
     /* eslint-disable */
     window.addEventListener('scroll', function() {
       didScroll = true;
@@ -55,75 +60,66 @@ class Navigation extends React.Component {
       }
     }, 100);
     /* eslint-enable */
-}
+  }
 
   sectionClk = (isNext) => {
-  if(this.props.isET1 === 'Y'){
-  if(isNext){
-  this.props.goToPageCallback('next')
-  }else{
-  this.props.goToPageCallback('prev')
-  }
-}
-else
-{
-    const currentIndex = this.props.data.currentPageNo - 1;
-    let goToPageId;
-    if (!isNext && !this.props.data.isFirstPage) {
-      goToPageId = this.props.pages[currentIndex - 1].id;
-    } else if (isNext && !this.props.data.isLastPage) {
-      goToPageId = this.props.pages[currentIndex + 1].id;
+    if (this.props.isET1 === 'Y') {
+      if (isNext) {
+        this.props.goToPageCallback('next');
+      } else {
+        this.props.goToPageCallback('prev');
+      }
+    } else {
+      const currentIndex = this.props.data.currentPageNo - 1;
+      let goToPageId;
+      if (!isNext && !this.props.data.isFirstPage) {
+        goToPageId = this.props.pages[currentIndex - 1].id;
+      } else if (isNext && !this.props.data.isLastPage) {
+        goToPageId = this.props.pages[currentIndex + 1].id;
+      }
+      this.props.callbackParent(goToPageId);
+      window.scroll(0, 0);
+      AnalyticsManager.dispatch({
+        category: 'Navigation',
+        action: isNext ? 'Next' : 'Prev',
+        label: goToPageId
+      });
     }
-    this.props.callbackParent(goToPageId);
-    window.scroll(0, 0);
-    AnalyticsManager.dispatch({
-      category: 'Navigation',
-      action: isNext ? 'Next' : 'Prev',
-      label: goToPageId
-    });
-}
   }
   handleFocus = (section, event) => {
     console.log(this.refs);
-    if(section == 'prevSection') {
+    if (section == 'prevSection') {
       ReactDOM.findDOMNode(this.refs.ps).classList.add('focus');
-    }
-    else if(section == 'currentSection') {
+    } else if (section == 'currentSection') {
       ReactDOM.findDOMNode(this.refs.cs).classList.add('focus');
-    }
-    else if(section == 'nextSection') {
+    } else if (section == 'nextSection') {
       ReactDOM.findDOMNode(this.refs.ns).classList.add('focus');
     }
   }
   removeFocus = (section, event) => {
     console.log(this.refs);
-    if(section == 'prevSection') {
+    if (section == 'prevSection') {
       ReactDOM.findDOMNode(this.refs.ps).classList.remove('focus');
-    }
-    else if(section == 'currentSection') {
+    } else if (section == 'currentSection') {
       ReactDOM.findDOMNode(this.refs.cs).classList.remove('focus');
-    }
-    else if(section == 'nextSection') {
+    } else if (section == 'nextSection') {
       ReactDOM.findDOMNode(this.refs.ns).classList.remove('focus');
     }
   };
 
   getPageNumber = (pageType) => {
-    var pageNumber;
-    if(pageType=="prev"){
-       pageNumber = this.props.getPrevNextPage("prev");
-       
-      return 'Page '+pageNumber;
-    }
-    else if(pageType=="next"){
-     pageNumber = this.props.getPrevNextPage("next");
-     return 'Page '+pageNumber;;
-    }
-    else if(pageType=="last"){
-     pageNumber = this.props.getPrevNextPage("last");
-     return 'Page '+pageNumber;;
-    }
+    let pageNumber;
+    if (pageType == 'prev') {
+      pageNumber = this.props.getPrevNextPage('prev');
 
+      return `Page ${pageNumber}`;
+    } else if (pageType == 'next') {
+      pageNumber = this.props.getPrevNextPage('next');
+      return `Page ${pageNumber}`;
+    } else if (pageType == 'last') {
+      pageNumber = this.props.getPrevNextPage('last');
+      return `Page ${pageNumber}`;
+    }
   }
 
   render() {
@@ -164,7 +160,7 @@ else
             <PrevBtn viewBox="24 28 18 9" style={style.prevBtn} />
             <div className="wrapper">
               <div className="label">{formatMessage(messages.previous)}</div>
-              {this.props.isET1==='Y' ? <div className="content">{this.getPageNumber("prev")}</div>:<div className="content">{this.props.data.prevPageTitle}</div>}
+              {this.props.isET1 === 'Y' ? <div className="content">{this.getPageNumber('prev')}</div> : <div className="content">{this.props.data.prevPageTitle}</div>}
             </div>
           </div>
         </div>
@@ -177,7 +173,7 @@ else
           <div className="nextContent">
             <div className="wrapper">
               <div className="label">{formatMessage(messages.next)}</div>
-              {this.props.isET1==='Y' ? <div className="content">{this.getPageNumber("next")}</div>:<div className="content">{this.props.data.nextPageTitle}</div>}
+              {this.props.isET1 === 'Y' ? <div className="content">{this.getPageNumber('next')}</div> : <div className="content">{this.props.data.nextPageTitle}</div>}
             </div>
             <NextBtn viewBox="1209 28 18 9" style={style.nextBtn} />
           </div>
