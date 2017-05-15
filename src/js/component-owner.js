@@ -42,9 +42,9 @@ ComponentOwner.childContextTypes = {
 
 ComponentOwner.propTypes = {
   data: PropTypes.object.isRequired,
-  goToPageCallback: PropTypes.func,
-  viewerLoaded: PropTypes.func,
-  intl: intlShape
+  goToPageCallback: PropTypes.func.isRequired,
+  viewerLoaded: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default injectIntl(ComponentOwner); // Inject this.props.intl into the component context
