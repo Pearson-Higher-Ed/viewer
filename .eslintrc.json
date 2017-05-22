@@ -16,22 +16,10 @@
       "error",
       {
         "tags": [],
-        "roles": ["article", "main"]
+        "roles": ["article", "main", "presentation"]
       }
     ],
-    "jsx-a11y/no-noninteractive-element-interactions": [
-      "warn",
-      {
-        "handlers": [
-          "onClick",
-          "onMouseDown",
-          "onMouseUp",
-          "onKeyPress",
-          "onKeyDown",
-          "onKeyUp"
-        ]
-      }
-    ],
+    "jsx-a11y/no-noninteractive-element-interactions": 1,
     "no-multiple-empty-lines": 2
   },
   "plugins": [

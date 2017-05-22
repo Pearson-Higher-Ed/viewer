@@ -9,7 +9,6 @@ import './main.scss';
 import ComponentOwner from './src/js/component-owner';
 import msgObject from './translations';
 
-/* eslint-disable */
 export default class ViewerDemo {
   constructor(config) {
     addLocaleData(frLocaleData);
@@ -20,11 +19,17 @@ export default class ViewerDemo {
 
   init(config) {
     this.intlObj = new InternationalSupport(msgObject, config.locale);
-
-    ReactDOM.render( 
+    ReactDOM.render(
       <IntlProvider locale={this.intlObj.getLocale()} messages={this.intlObj.getMessages()}>
-        <ComponentOwner data={config.data} goToPageCallback={config.goToPageCallback} viewerLoaded={config.viewerLoaded}/> 
-      </IntlProvider> ,
+        <ComponentOwner
+          data={config.data}
+          goToPageCallback={config.goToPageCallback}
+          isET1={config.isET1}
+          viewerLoaded={config.viewerLoaded}
+          getPrevNextPage={config.getPrevNextPage}
+          callbackParent={config.callbackParent}
+        />
+      </IntlProvider>,
       document.getElementById(config.elementId)
     );
   }

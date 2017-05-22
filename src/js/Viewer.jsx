@@ -109,6 +109,9 @@ class Viewer extends React.Component {
         data={this.state}
         pages={this.props.data.pages}
         callbackParent={this.props.goToPageCallback}
+        getPrevNextPage={this.props.getPrevNextPage}
+        goToPageCallback={this.props.goToPageCallback}
+        isET1={this.props.isET1}
       />);
     }
     return navigation;
@@ -124,11 +127,11 @@ class Viewer extends React.Component {
             goToPageCallback={this.props.goToPageCallback}
             data={this.props.data}
             getPrevNextPage={this.props.getPrevNextPage}
-            pages={this.props.pages}
+            pages={this.props.data.pages}
+            callbackParent={this.props.callbackParent}
           />
         </div> :
-        /* eslint-disable-line jsx-a11y/no-noninteractive-element-interactions */
-        <div id="viewer" role="main" tabIndex="0" onKeyUp={this.arrowNavigation}>
+        <div id="viewer" role="presentation" tabIndex="0" onKeyUp={this.arrowNavigation}>
           <div className="viewer-body">
             {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
           </div>
@@ -142,13 +145,17 @@ class Viewer extends React.Component {
 }
 
 Viewer.propTypes = {
-  pages: PropTypes.array.isRequired,
   getPrevNextPage: PropTypes.func.isRequired,
-  isET1: PropTypes.string.isRequired,
+  isET1: PropTypes.string,
   intl: intlShape.isRequired,
   data: PropTypes.object.isRequired,
   goToPageCallback: PropTypes.func.isRequired,
-  viewerLoaded: PropTypes.func.isRequired
+  viewerLoaded: PropTypes.func.isRequired,
+  callbackParent: PropTypes.func.isRequired
+};
+
+Viewer.defaultProps = {
+  isET1: 'N'
 };
 
 export default injectIntl(Viewer);

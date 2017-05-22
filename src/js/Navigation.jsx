@@ -196,7 +196,7 @@ class Navigation extends React.Component {
       <div className={this.state.classname}>
         <div
           tabIndex="0"
-          role="article"
+          role="presentation"
           className={`prevSection section ${this.props.data.isFirstPage ? 'hide' : ''}`}
           ref={(ref) => { this.pageSections.ps = ref; }}
           title={this.props.data.prevPageTitle}
@@ -221,7 +221,7 @@ class Navigation extends React.Component {
         <div className={`line ${this.props.data.isFirstPage ? 'hide' : ''}`} />
         <div
           tabIndex="0"
-          role="article"
+          role="presentation"
           className="currentSection section"
           ref={(ref) => { this.pageSections.cs = ref; }}
           onKeyUp={() => this.handleFocus('currentSection')}
@@ -231,7 +231,7 @@ class Navigation extends React.Component {
 
         <div
           tabIndex="0"
-          role="article"
+          role="presentation"
           aria-label={formatMessage(messages.next)}
           className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`}
           ref={(ref) => { this.pageSections.ns = ref; }}
@@ -258,7 +258,7 @@ class Navigation extends React.Component {
 
 Navigation.propTypes = {
   getPrevNextPage: PropTypes.func.isRequired,
-  intl: intlShape.isRequired.isRequired,
+  intl: intlShape.isRequired,
   goToPageCallback: PropTypes.func.isRequired,
   isET1: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
