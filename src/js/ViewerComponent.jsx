@@ -14,6 +14,7 @@ export const ViewerComponent = function ViewerComponent(paramsObj) { // eslint-d
       isET1={paramsObj.isET1}
       getPrevNextPage={paramsObj.getPrevNextPage}
       pages={paramsObj.pages}
+      callbackParent={paramsObj.callbackParent}
     />
   </IntlProvider>);
 };

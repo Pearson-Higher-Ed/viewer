@@ -10,7 +10,7 @@
     "pretest": "npm run lint",
     "test": "mocha --compilers js:babel-register --require babel-polyfill --require intl --require test/utils/dom.js",
     "build": "webpack -p",
-    "lint": "eslint src/js/** demo/demo.js",
+    "lint": "eslint src/js/** main.js demo/demo.js",
     "gen-changelog": "node ./npm_scripts/gen-changelog.js",
     "version": "npm run gen-changelog && git add CHANGELOG.md",
     "ci": "npm test && npm run build",
@@ -26,11 +26,11 @@
     "url": "https://github.com/Pearson-Higher-Ed/"
   },
   "dependencies": {
+    "@pearson-incubator/aquila-js-core": "^0.2.32",
     "contentful": "^3.5.0",
     "estraverse-fb": "^1.3.1",
     "lodash": "^4.16.4",
-    "react-intl": "~2.0.1",
-    "@pearson-incubator/aquila-js-core": "^0.2.32"
+    "react-intl": "^2.3.0"
   },
   "devDependencies": {
     "@pearson-components/npm-scripts": "^0.1.0",
@@ -45,13 +45,13 @@
     "colors": "~1.1.2",
     "conventional-changelog": "~1.1.0",
     "css-loader": "~0.23.0",
-    "eslint": "^3.8.1",
-    "eslint-config-airbnb": "^12.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.0",
     "eslint-loader": "~1.1.1",
-    "eslint-plugin-import": "^2.0.1",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-promise": "^3.3.0",
-    "eslint-plugin-react": "^6.4.1",
+    "eslint-plugin-react": "^7.0.1",
     "expect": "~1.18.0",
     "expect-jsx": "~2.5.1",
     "file-loader": "~0.8.5",
@@ -60,13 +60,14 @@
     "json-loader": "~0.5.4",
     "material-ui": "^0.16.1",
     "mocha": "~2.4.5",
-    "node-sass": "~3.4.2",
+    "node-sass": "^4.5.2",
     "pearson-elements": "^0.11.0",
+    "prop-types": "^15.5.10",
     "pseudoloc": "^1.1.0",
-    "react": "^15.0.0",
+    "react": "^15.4.2",
     "react-addons-test-utils": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "sass-loader": "~3.2.0",
+    "react-dom": "^15.4.2",
+    "sass-loader": "^4.1.1",
     "semver": "~5.1.0",
     "style-loader": "~0.13.0",
     "url-loader": "~0.5.7",
@@ -75,10 +76,11 @@
   },
   "peerDependencies": {
     "material-ui": "^0.16.0",
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1",
-    "react-tap-event-plugin": "~1.0.0",
-    "react-intl": "~2.1.5"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-tap-event-plugin": "~2.0.1",
+    "react-intl": "~2.3.0",
+    "prop-types": "^15.5.10"
   },
   "keywords": [
     "pearson-components"

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { intlShape, injectIntl } from 'react-intl';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
@@ -8,7 +9,7 @@ class Viewer extends React.Component {
   constructor(props) {
     super(props);
     if (props.isET1 !== 'Y') {
-      const currentPageId = (this.props.data.currentPageId ? this.props.data.currentPageId : this.props.data.pages[0].id);
+      const currentPageId = this.props.data.currentPageId ? this.props.data.currentPageId : this.props.data.pages[0].id;
       const currentPageIndex = (this.props.data.pages.findIndex(page => page.id === currentPageId));
       const currentPageNo = currentPageIndex + 1;
       const currentPageObj = (this.props.data.pages.find(page => page.id === currentPageId));
@@ -47,7 +48,7 @@ class Viewer extends React.Component {
   renderEmpty() {
     return (
       <div className="empty-help" >
-        <div className="empty-message" tabIndex="0">{this.state.content}</div>
+        <div role="main" className="empty-message" tabIndex="0">{this.state.content}</div>
       </div>
     );
   }
@@ -61,10 +62,8 @@ class Viewer extends React.Component {
   navigationChanged(targetPageId) {
     const that = this;
     const pages = that.props.data.pages;
-    /* eslint-disable */
-    const targetPage = find(pages, function(page) { return page.id === targetPageId; });
-    const targetPageIndex = findIndex( pages, function(page) { return page.id === targetPageId; } );
-    /* eslint-enable */
+    const targetPage = find(pages, page => page.id === targetPageId);
+    const targetPageIndex = findIndex(pages, page => page.id === targetPageId);
 
     // Update component state
     that.setState({
@@ -100,30 +99,39 @@ class Viewer extends React.Component {
       }
       window.scroll(0, 0);
     }
-  }
+  };
 
   renderNav = () => {
     let navigation = '';
     if (this.props.data.pages.length > 1) {
       navigation = (<Navigation
-        intl={this.props.intl} data={this.state}
-        pages={this.props.data.pages} callbackParent={this.props.goToPageCallback}
+        intl={this.props.intl}
+        data={this.state}
+        pages={this.props.data.pages}
+        callbackParent={this.props.goToPageCallback}
+        getPrevNextPage={this.props.getPrevNextPage}
+        goToPageCallback={this.props.goToPageCallback}
+        isET1={this.props.isET1}
       />);
     }
     return navigation;
-  }
+  };
   render() {
     return (
       <div>
 
         {this.props.isET1 === 'Y' ? <div id="viewer" role="main" tabIndex="0">
           <Navigation
-            intl={this.props.intl} isET1={this.props.isET1} goToPageCallback={this.props.goToPageCallback}
+            intl={this.props.intl}
+            isET1={this.props.isET1}
+            goToPageCallback={this.props.goToPageCallback}
             data={this.props.data}
             getPrevNextPage={this.props.getPrevNextPage}
-            pages={this.props.pages}
+            pages={this.props.data.pages}
+            callbackParent={this.props.callbackParent}
           />
-        </div> : <div id="viewer" role="main" tabIndex="0" onKeyUp={this.arrowNavigation}>
+        </div> :
+        <div id="viewer" role="presentation" tabIndex="0" onKeyUp={this.arrowNavigation}>
           <div className="viewer-body">
             {(this.state.content === '') ? this.renderEmpty() : this.renderContent()}
           </div>
@@ -137,10 +145,17 @@ class Viewer extends React.Component {
 }
 
 Viewer.propTypes = {
+  getPrevNextPage: PropTypes.func.isRequired,
+  isET1: PropTypes.string,
   intl: intlShape.isRequired,
-  data: React.PropTypes.object.isRequired,
-  goToPageCallback: React.PropTypes.func,
-  viewerLoaded: React.PropTypes.func
+  data: PropTypes.object.isRequired,
+  goToPageCallback: PropTypes.func.isRequired,
+  viewerLoaded: PropTypes.func.isRequired,
+  callbackParent: PropTypes.func.isRequired
+};
+
+Viewer.defaultProps = {
+  isET1: 'N'
 };
 
 export default injectIntl(Viewer);

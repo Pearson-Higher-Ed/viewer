@@ -1,10 +1,9 @@
 /* eslint-disable */
-import Viewer from '../main';
+import ViewerDemo from '../main';
 import { addLocaleData } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import frLocaleData from 'react-intl/locale-data/fr';
 import tsLocaleData from 'react-intl/locale-data/ts';
-import BookmarkListDemo from '../main.js'; // eslint-disable-line no-unused-vars
 
 const localeData = {
   en: enLocaleData,
@@ -28,7 +27,7 @@ function init() {
   const region = getParam('lang') || 'en';
   addLocaleData(localeData[region]);
 
-  new Viewer({
+  new ViewerDemo({
     elementId: 'viewer-container',
     locale: region,
     data: {
@@ -40,7 +39,10 @@ function init() {
       ]
     },
     goToPageCallback: clientCallback,
-    viewerLoaded: viewerLoaded
+    viewerLoaded: viewerLoaded,
+    isET1: 'N',
+    getPrevNextPage: () => {},
+    callbackParent: () => {}
   });
 }
 

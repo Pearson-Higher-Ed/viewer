@@ -27,9 +27,12 @@ class ComponentOwner extends React.Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <ViewerComponent
           data={this.props.data}
+          isET1={this.props.isET1}
           goToPageCallback={this.props.goToPageCallback}
           viewerLoaded={this.props.viewerLoaded}
           locale={this.props.intl.locale}
+          getPrevNextPage={this.props.getPrevNextPage}
+          callbackParent={this.props.callbackParent}
         />
       </MuiThemeProvider>
     );
@@ -42,9 +45,12 @@ ComponentOwner.childContextTypes = {
 
 ComponentOwner.propTypes = {
   data: PropTypes.object.isRequired,
-  goToPageCallback: PropTypes.func,
-  viewerLoaded: PropTypes.func,
-  intl: intlShape
+  isET1: PropTypes.string.isRequired,
+  goToPageCallback: PropTypes.func.isRequired,
+  viewerLoaded: PropTypes.func.isRequired,
+  intl: intlShape.isRequired,
+  getPrevNextPage: PropTypes.func.isRequired,
+  callbackParent: PropTypes.func.isRequired
 };
 
 export default injectIntl(ComponentOwner); // Inject this.props.intl into the component context

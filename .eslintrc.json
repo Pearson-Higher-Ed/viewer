@@ -11,8 +11,18 @@
     "comma-dangle": ["error", "never"],
     "react/sort-comp": 0,
     "react/forbid-prop-types": [2, { "forbid": ["any"] }],
-    "jsx-a11y/no-static-element-interactions": 1,
-    "no-multiple-empty-lines": 2,
-    "react/jsx-filename-extension": 0
-  }
+    "react/jsx-filename-extension": 0,
+    "jsx-a11y/no-noninteractive-tabindex": [
+      "error",
+      {
+        "tags": [],
+        "roles": ["article", "main", "presentation"]
+      }
+    ],
+    "jsx-a11y/no-noninteractive-element-interactions": 1,
+    "no-multiple-empty-lines": 2
+  },
+  "plugins": [
+    "jsx-a11y"
+  ]
 }
