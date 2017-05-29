@@ -133,16 +133,16 @@ class Navigation extends React.Component {
     const { formatMessage } = this.props.intl;
     const style = {
       nextBtn: {
-        height: '9px',
-        width: '18px',
+        height: '12px',
+        width: '24px',
         float: 'right',
-        margin: '14px 0 0 0'
+        margin: '9px 0 0 0'
       },
       prevBtn: {
-        height: '9px',
-        width: '18px',
+        height: '12px',
+        width: '24px',
         float: 'left',
-        margin: '14px 0 0 0'
+        margin: '9px 0 0 0'
       }
     };
     /* eslint-disable */
@@ -165,7 +165,7 @@ class Navigation extends React.Component {
           35.7199375 L1211.56028,33.2501875 L1226.25008,33.2501875 C1226.66409,33.2501875 1227.0001,
           32.9141875 1227.0001,32.5001875 C1227.0001,32.0861875 1226.66409,31.7501875 1226.25008,
           31.7501875 L1211.56028,31.7501875 Z"
-          fill="#007fa3"
+          fill="#6a7070"
           transform="translate(1218.000100, 32.500094) rotate(180.000000) translate(-1218.000100, -32.500094)" />
       </SvgIcon>
     );
@@ -188,7 +188,7 @@ class Navigation extends React.Component {
           36.9266875 29.0300798,36.7804375 C29.3233359,36.4871875 29.3233359,36.0131875 29.0300798,
           35.7199375 L26.5602783,33.2501875 L41.2500844,33.2501875 C41.664093,33.2501875 42.0001,
           32.9141875 42.0001,32.5001875 C42.0001,32.0861875 41.664093,31.7501875 41.2500844,31.7501875"
-          fill="#007fa3" />
+          fill="#6a7070" />
       </SvgIcon>
     );
     /* eslint-enable */
