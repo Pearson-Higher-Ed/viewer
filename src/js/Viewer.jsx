@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape, injectIntl } from 'react-intl';
-import find from 'lodash/find';
-import findIndex from 'lodash/findIndex';
 import Navigation from './Navigation';
 
 class Viewer extends React.Component {
@@ -62,8 +60,8 @@ class Viewer extends React.Component {
   navigationChanged(targetPageId) {
     const that = this;
     const pages = that.props.data.pages;
-    const targetPage = find(pages, page => page.id === targetPageId);
-    const targetPageIndex = findIndex(pages, page => page.id === targetPageId);
+    const targetPage = pages.find(page => page.id === targetPageId);
+    const targetPageIndex = pages.findIndex(page => page.id === targetPageId);
 
     // Update component state
     that.setState({
