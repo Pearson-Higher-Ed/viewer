@@ -160,11 +160,67 @@ PEARSON PROPRIETARY AND CONFIDENTIAL INFORMATION SUBJECT TO NDA
     width: 86% !important;
     padding-right: 14px !important;
   }
+  .viewerContent .navigation .nextSection .nextContent .wrapper {
+    margin-right: 0px;
+  }
 }
 
 @media (max-width: 480px) {
   .navigation .nextSection {
     width: 83% !important;
     padding-right: 14px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .viewerContent .navigation .nextSection .nextContent .wrapper {
+    margin-right: 3%;
+  }
+  .navigation .nextSection .nextContent .wrapper {
+    width: 90%;
+    float: left;
+  }
+}
+
+@media (min-width: 737px) and (max-width: 1224px) {
+  .navigation .prevSection {
+    width: 34% !important;
+  }
+  .navigation .currentSection {
+    width: 31% !important;
+  }
+  .navigation .nextSection {
+    width: 34% !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media (min-width: 737px) and (max-width: 992px) {
+  .navigation .prevSection .prevContent .wrapper {
+    width: 83% !important;
+  }
+  .navigation .nextSection .nextContent .wrapper {
+    width: 84% !important;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1224px) {
+  .navigation .prevSection .prevContent .wrapper {
+    width: 83% !important;
+  }
+  .navigation .nextSection .nextContent .wrapper {
+    width: 86% !important;
+  }
+
+  .navigation .prevSection .prevContent .wrapper {
+     margin: 0 0 0 5%;
+  }
+
+  .viewerContent .navigation .nextSection .nextContent .wrapper {
+    margin-right: 5%;
+  }
+  .navigation .nextSection .nextContent .wrapper {
+    width: 86%;
+    float: left;
   }
 }
