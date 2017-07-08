@@ -157,13 +157,13 @@ class Viewer extends React.Component {
 }
 
 Viewer.propTypes = {
-  getPrevNextPage: PropTypes.func.isRequired,
+  getPrevNextPage: PropTypes.func, // eslint-disable-line react/require-default-props
   isET1: PropTypes.string,
   intl: intlShape.isRequired,
   data: PropTypes.object.isRequired,
-  goToPageCallback: PropTypes.func.isRequired,
-  viewerLoaded: PropTypes.func.isRequired,
-  callbackParent: PropTypes.func.isRequired
+  goToPageCallback: PropTypes.func, // eslint-disable-line react/require-default-props
+  viewerLoaded: PropTypes.func, // eslint-disable-line react/require-default-props
+  callbackParent: PropTypes.func // eslint-disable-line react/require-default-props
 };
 
 Viewer.defaultProps = {
