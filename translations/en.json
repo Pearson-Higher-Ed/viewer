@@ -3,5 +3,7 @@
   "emptyMessage": "Your viewer is empty.",
   "next": "Next",
   "previous": "Previous",
-  "page": "Page Number"
+  "page": "Page Number",
+  "previousPage":"Previous Page",
+  "NextPage":"Next Page"
 }

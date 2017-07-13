@@ -1,4 +1,9 @@
 {
   "title": "viewer",
-  "emptyMessage": "Uw viewer is leeg."
+  "emptyMessage": "Uw viewer is leeg.",
+  "next": "volgende",
+  "previous": "voorgaand",
+  "page": "Paginanummer",
+  "previousPage":"Vorige bladzijde",
+  "NextPage":"Volgende bladzijde"
 }

@@ -210,7 +210,8 @@ class Navigation extends React.Component {
       <div className={this.state.classname}>
         <div
           tabIndex="0"
-          role="presentation"
+          role="link"
+          aria-label={formatMessage(messages.previousPage)}
           className={`prevSection section ${this.props.data.isFirstPage ? 'hide' : ''}`}
           ref={(ref) => { this.pageSections.ps = ref; }}
           title={this.props.data.prevPageTitle}
@@ -245,8 +246,8 @@ class Navigation extends React.Component {
 
         <div
           tabIndex="0"
-          role="presentation"
-          aria-label={formatMessage(messages.next)}
+          role="link"
+          aria-label={formatMessage(messages.nextPage)}
           className={`nextSection section ${this.props.data.isLastPage ? 'hide' : ''}`}
           ref={(ref) => { this.pageSections.ns = ref; }}
           title={this.props.data.nextPageTitle}
