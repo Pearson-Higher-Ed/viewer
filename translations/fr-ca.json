@@ -3,5 +3,7 @@
   "emptyMessage": "Votre Téléspectateur est vide.",
   "next": "prochain",
   "previous": "précédent",
-  "page": "Numéro de page"
+  "page": "Numéro de page",
+  "previousPage":"Page précédente",
+  "NextPage":"Page suivante"
 }

@@ -1,4 +1,9 @@
 {
   "title": "Spettatore",
-  "emptyMessage": "Il tuo spettatore è vuoto."
+  "emptyMessage": "Il tuo spettatore è vuoto.",
+  "next": "Il prossimo",
+  "previous": "precedente",
+  "page": "Numero di paginar",
+  "previousPage":"Pagina precedente",
+  "NextPage":"Pagina successiva"
 }

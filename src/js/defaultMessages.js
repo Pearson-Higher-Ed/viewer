@@ -35,6 +35,13 @@ export const messages = defineMessages({ // eslint-disable-line
   page: {
     id: 'page',
     defaultMessage: 'Page Number'
+  },
+  nextPage: {
+    id: 'nextPage',
+    defaultMessage: 'Next Page'
+  },
+  previousPage: {
+    id: 'previousPage',
+    defaultMessage: 'Previous Page'
   }
-
 });
